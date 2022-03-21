@@ -19,9 +19,9 @@ const validateInput = require("../validation/input_data_validation");
 // const getTableName = require("../validation/get_table_name");
 // const authenticate = require("../middleware/authentication");
 
-router.get("/", (req, res) => {
-  res.status(200).json({ success: true, message: "Hello from the Home Page" });
-});
+// router.get("/", (req, res) => {
+//   res.status(200).json({ success: true, message: "Hello from the Home Page" });
+// });
 
 //common registration route for student,librarian and admin
 router.post("/register", async (req, res) => {
