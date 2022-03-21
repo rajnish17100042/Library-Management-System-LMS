@@ -27,7 +27,7 @@ const validateInput = require("../validation/input_data_validation");
 router.post("/register", async (req, res) => {
   // calling function for input validation
   const isInputValidated = validateInput(req);
-  console.log(isInputValidated);
+  // console.log(isInputValidated);
 
   if (!isInputValidated) {
     res.json({ success: false, message: "Please fill the data properly" });
@@ -38,7 +38,7 @@ router.post("/register", async (req, res) => {
         email: req.body.email,
         role: req.body.role,
       });
-      console.log(userExist);
+      // console.log(userExist);
       if (userExist) {
         return res.json({
           success: false,
@@ -46,14 +46,14 @@ router.post("/register", async (req, res) => {
         });
       }
       delete req.body.cpassword;
-      console.log(req.body);
+      // console.log(req.body);
       const register = new Registration(req.body);
-      console.log(register);
+      // console.log(register);
 
       // here we will use 'pre' middleware to hash the password will define that middleware in the userSchema
-      console.log("Before MongoDb save ");
+      // console.log("Before MongoDb save ");
       await register.save();
-      console.log("After MongoDb save ");
+      // console.log("After MongoDb save ");
       return res.json({
         success: true,
         message: "User registedred Successfully",
@@ -74,7 +74,7 @@ router.post("/login", async (req, res) => {
 
   // server side input validation
   if (!email || !password || !role) {
-    return res.status(400).json({
+    return res.json({
       success: false,
       message: "Please fill all the details correctly",
     });
@@ -83,23 +83,23 @@ router.post("/login", async (req, res) => {
   // check if user exist based on the email and role
   try {
     const userExist = await Registration.findOne({ email, role });
-    console.log(userExist);
+    // console.log(userExist);
     if (!userExist) {
-      return res
-        .status(400)
-        .json({ success: false, message: "User NOT exists" });
+      return res.json({ success: false, message: "User NOT exists" });
     } else {
       //compare the password
       bcrypt.compare(password, userExist.password, (err, result) => {
         if (err) {
           // throw err;
-          return res
-            .status(400)
-            .json({ success: false, message: "OPPS !! Something went wrong" });
+          return res.json({
+            success: false,
+            message: "OPPS !! Something went wrong",
+          });
         } else if (!result) {
-          return res
-            .status(400)
-            .json({ success: false, message: "OPPS !! Something went wrong" });
+          return res.json({
+            success: false,
+            message: "OPPS !! Something went wrong",
+          });
         }
 
         //generate access token or JWT for this user
@@ -108,28 +108,27 @@ router.post("/login", async (req, res) => {
         jwt.sign({ userExist }, secretKey, (err, token) => {
           if (err) {
             // throw err;
-            return res.status(400).json({
+            return res.json({
               success: false,
               message: "OPPS !! Something went wrong",
             });
           }
 
-          res.cookie("jwtoken", token, {
-            expires: new Date(Date.now() + 100000000000), //time in millisecond  100second
+          res.cookie("accessToken", token, {
+            expiresIn: "15min",
             httpOnly: true,
           });
           // console.log(token);
           res.json({
             success: true,
             access_token: token,
+            role,
           });
         });
       });
     }
   } catch (err) {
-    return res
-      .status(400)
-      .json({ success: false, message: "OPPS!! something went wrong" });
+    return res.json({ success: false, message: "OPPS!! something went wrong" });
   }
 });
 
