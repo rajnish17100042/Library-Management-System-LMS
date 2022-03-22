@@ -11,13 +11,15 @@ import { LoginComponent } from './components/login/login.component';
 import {ValidateService}from './services/validate.service';
 import {AuthService}from './services/auth.service';
 import { FlashMessagesModule } from 'flash-messages-angular';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoutingComponents,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,

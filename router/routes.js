@@ -16,7 +16,8 @@ const db = require("../db/conn");
 const Registration = require("../model/registrationSchema");
 
 const validateInput = require("../validation/input_data_validation");
-// const getTableName = require("../validation/get_table_name");
+const resetPasswordLinkMailer = require("../mailer/reset_password_link_mailer.js");
+
 // const authenticate = require("../middleware/authentication");
 
 // router.get("/", (req, res) => {
@@ -132,4 +133,50 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// route for forget password ...will check for user existence in database and send
+router.post("/forgetPassword", async (req, res) => {
+  // get the request body
+  // console.log(req.body);
+  const { email, role } = req.body;
+
+  // server side validation   ....what if request is sent from postman
+  if (!email || !role) {
+    return res.json({
+      success: false,
+      message: "Please Fill the data properly",
+    });
+  }
+  //check if user exists in the database
+  try {
+    const userExist = await Registration.findOne({ email, role });
+    // console.log(userExist);
+    if (!userExist) {
+      return res.json({ success: false, message: "User NOT exists" });
+    } else {
+      const password = userExist.password;
+      //user exists and now create one time link valid for 15 minutes  for that generate a new secret key using original secret key and user password stored in the database
+      const secret = secretKey + password; //this secret is unique for all users
+      //now define the payload for the jwt
+      const payload = {
+        email,
+        role,
+      };
+
+      //now generate jwt
+      const token = jwt.sign(payload, secret, { expiresIn: "15m" });
+      // console.log(token);
+      //now generate the reset password link
+      const resetPasswordLink = `https://student-database-management1.herokuapp.com/reset-password/${role}/${email}/${token}`;
+      // console.log(resetPasswordLink);
+      //send the reset password link to email
+      resetPasswordLinkMailer(email, resetPasswordLink);
+      return res.json({
+        success: true,
+        message: "Check your mail for password reset link",
+      });
+    }
+  } catch (err) {
+    return res.json({ success: false, message: "OPPS!! something went wrong" });
+  }
+});
 module.exports = router;

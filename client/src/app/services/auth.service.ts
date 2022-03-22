@@ -19,6 +19,14 @@ export class AuthService {
     return this.http.post<any>('/login',user,{headers:headers,})
    }
 
+   //forget password 
+   forgetPassword(user){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('http://localhost:5000/forgetPassword',user,{headers:headers,})
+   }
+
  
 
 
