@@ -166,10 +166,11 @@ router.post("/forgetPassword", async (req, res) => {
       const token = jwt.sign(payload, secret, { expiresIn: "15m" });
       // console.log(token);
       //now generate the reset password link
-      const resetPasswordLink = `https://student-database-management1.herokuapp.com/reset-password/${role}/${email}/${token}`;
+      const resetPasswordLink = `https://library-management-system-lms1.herokuapp.com/reset-password/${role}/${email}/${token}`;
       // console.log(resetPasswordLink);
       //send the reset password link to email
       resetPasswordLinkMailer(email, resetPasswordLink);
+
       return res.json({
         success: true,
         message: "Check your mail for password reset link",
@@ -177,6 +178,96 @@ router.post("/forgetPassword", async (req, res) => {
     }
   } catch (err) {
     return res.json({ success: false, message: "OPPS!! something went wrong" });
+  }
+});
+
+// get route to verify the token for the Reset Password Feature
+router.get("/resetPassword/:role/:email/:token", async (req, res) => {
+  const params = req.params;
+  const { role, email, token } = params;
+
+  // use try catch block to verify token
+  try {
+    const userExist = await Registration.findOne({ email, role });
+    // console.log(userExist);
+    if (!userExist) {
+      return res.json({ success: false, message: "User NOT exists" });
+    } else {
+      const password = userExist.password;
+      const secret = secretKey + password; //this secret is unique for all users
+      const payload = jwt.verify(token, secret); //returns the payload if token verified
+      console.log(payload);
+      return res.json({
+        success: true,
+        message: "Reset Password Page is rendering",
+      });
+    }
+  } catch (err) {
+    // throw err;
+    return res.json({ success: false, message: "Some Error Occured!" });
+  }
+});
+
+// post method for Reset Password Feature to update the password
+router.post("/resetPassword/:role/:email/:token", async (req, res) => {
+  console.log("Hitting Post Reset Password Route");
+  console.log(req.body);
+  console.log(req.params);
+  const { role, email, token } = req.params;
+  const { password, cpassword } = req.body;
+  //server side validation
+  if (!password || !cpassword || password !== cpassword) {
+    return res.json({ success: false, message: "Please fill data properly" });
+  } else {
+    // double check for reset password token
+    try {
+      const userExist = await Registration.findOne({ email, role });
+      // console.log(userExist);
+      if (!userExist) {
+        return res.json({ success: false, message: "User NOT exists" });
+      } else {
+        const dbPassword = userExist.password;
+        const secret = secretKey + dbPassword; //this secret is unique for all users
+        const payload = jwt.verify(token, secret); //returns the payload if token verified
+        console.log(payload);
+        if (!payload) {
+          return res.json({
+            success: false,
+            message: "OPPS!! Something went wrong",
+          });
+        } else {
+          // hash the password and update the database query
+          bcrypt.hash(password, saltRounds, async (err, hash) => {
+            if (err) {
+              return res.json({
+                success: false,
+                message: "OPPS!! Something went wrong",
+              });
+            } else {
+              const isUpdated = await Registration.update(
+                { email, role },
+                { $set: { password: hash } }
+              );
+              console.log(isUpdated.modifiedCount);
+              if (!isUpdated.modifiedCount) {
+                return res.json({
+                  success: false,
+                  message: "Some Error Occured!",
+                });
+              } else {
+                return res.json({
+                  success: true,
+                  message: "Password Changed Successfully",
+                });
+              }
+            }
+          });
+        }
+      }
+    } catch (err) {
+      // throw err;
+      return res.json({ success: false, message: "Some Error Occured!" });
+    }
   }
 });
 module.exports = router;

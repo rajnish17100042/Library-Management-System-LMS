@@ -27,7 +27,21 @@ export class AuthService {
     return this.http.post<any>('/forgetPassword',user,{headers:headers,})
    }
 
- 
+//reset password to change the password after token verification is done
+   getResetPassword(params){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/resetPassword/'+params.role+'/'+params.email+'/'+params.token,{headers:headers,})
+   }
+
+  //reset password to change the password after token verification is done
+   resetPassword(password,params){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('/resetPassword/'+params.role+'/'+params.email+'/'+params.token,password,{headers:headers,})
+   }
 
 
 

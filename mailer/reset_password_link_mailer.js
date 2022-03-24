@@ -3,6 +3,7 @@ const user = process.env.YAHOO_USER_ID;
 const password = process.env.YAHOO_PASSWORD;
 // console.log(user, password);
 const resetPasswordLinkMailer = async (email, resetPasswordLink) => {
+  // let mailResponse = null;
   var transporter = nodemailer.createTransport({
     host: "smtp.bizmail.yahoo.com",
     port: 587,
@@ -30,8 +31,10 @@ const resetPasswordLinkMailer = async (email, resetPasswordLink) => {
       console.log(error);
     } else {
       console.log("Email sent: " + info.response);
+      // mailResponse = info.response;
     }
   });
+  // return mailResponse;
 };
 
 // export mailer function so that we can  use it in other file

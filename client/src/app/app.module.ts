@@ -12,6 +12,7 @@ import {ValidateService}from './services/validate.service';
 import {AuthService}from './services/auth.service';
 import { FlashMessagesModule } from 'flash-messages-angular';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
     RoutingComponents,
     NavbarComponent,
     LoginComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
