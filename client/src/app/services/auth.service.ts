@@ -16,7 +16,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.post<any>('http://localhost:5000/login',user,{headers:headers,})
+    return this.http.post<any>('/login',user,{headers:headers,})
    }
 
    //forget password 
@@ -24,7 +24,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.post<any>('http://localhost:5000/forgetPassword',user,{headers:headers,})
+    return this.http.post<any>('/forgetPassword',user,{headers:headers,})
    }
 
 //reset password to change the password after token verification is done
@@ -32,7 +32,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.get<any>('http://localhost:5000/resetPassword/'+params.role+'/'+params.email+'/'+params.token,{headers:headers,})
+    return this.http.get<any>('/resetPassword/'+params.role+'/'+params.email+'/'+params.token,{headers:headers,})
    }
 
   //reset password to change the password after token verification is done
@@ -40,7 +40,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.post<any>('http://localhost:5000/resetPassword/'+params.role+'/'+params.email+'/'+params.token,password,{headers:headers,})
+    return this.http.post<any>('/resetPassword/'+params.role+'/'+params.email+'/'+params.token,password,{headers:headers,})
    }
 
  //admin dashboard protection  
