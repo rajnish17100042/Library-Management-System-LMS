@@ -21,7 +21,7 @@ const authenticate = async (req, res, next) => {
     console.log(verifyToken);
 
     // //now check in the database if the user is present with the valid role
-    let { email, password, role } = verifyToken.payload;
+    let { email, password, role } = verifyToken.userExist;
 
     const userExist = await Registration.findOne({ email, role, password });
     console.log("userexist is");
