@@ -57,8 +57,8 @@ login(){
 
         // console.log(data.role);
         if(data.role==='admin'){
-        // this.router.navigate(['/admin/dashboard']);
-        this.flashMessage.show("Admin Login",{cssClass:'alert-success',timeout:3000});
+        this.router.navigate(['/admin/dashboard']);
+        // this.flashMessage.show("Admin Login",{cssClass:'alert-success',timeout:3000});
         // console.log("Admin");
 
 

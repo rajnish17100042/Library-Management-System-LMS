@@ -13,6 +13,7 @@ import {AuthService}from './services/auth.service';
 import { FlashMessagesModule } from 'flash-messages-angular';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     NavbarComponent,
     LoginComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

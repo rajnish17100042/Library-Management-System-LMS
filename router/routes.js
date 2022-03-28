@@ -17,6 +17,7 @@ const Registration = require("../model/registrationSchema");
 
 const validateInput = require("../validation/input_data_validation");
 const resetPasswordLinkMailer = require("../mailer/reset_password_link_mailer.js");
+const authenticate = require("../middleware/authentication");
 
 // const authenticate = require("../middleware/authentication");
 
@@ -270,4 +271,21 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
     }
   }
 });
+
+// route for admin dashboard
+router.get("/adminDashboard", authenticate, (req, res) => {
+  // console.log("Hello");
+  // double checking
+  if (req.role !== "admin") {
+    return res.json({
+      success: false,
+      message: "Page can't be rendered! Login First",
+    });
+  } else {
+    const adminData = req.user;
+    // console.log(adminData[0]);
+    return res.json({ success: true, adminData: adminData[0] });
+  }
+});
+
 module.exports = router;
