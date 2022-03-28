@@ -282,12 +282,19 @@ router.get("/adminDashboard", authenticate, (req, res) => {
       message: "Page can't be rendered! Login First",
     });
   } else {
-    console.log("admin data is:");
-    console.log(req.user);
+    // console.log("admin data is:");
+    // console.log(req.user);
     const adminData = req.user;
     // console.log(adminData[0]);
     return res.json({ success: true, adminData: adminData });
   }
+});
+
+//route for Logout
+router.get("/logout", authenticate, (req, res) => {
+  // console.log("reaching to logout route");
+  res.clearCookie("accessToken");
+  return res.json({ success: true, message: "Logged out successfully" });
 });
 
 module.exports = router;

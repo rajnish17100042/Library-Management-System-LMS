@@ -13,19 +13,19 @@ const authenticate = async (req, res, next) => {
     // console.log("inside try block of authenticate middleware");
     // console.log(req);
     const token = req.cookies.accessToken;
-    console.log(token);
+    // console.log(token);
 
     // let's verify the token and get the user details
     const verifyToken = jwt.verify(token, secretKey);
-    console.log("verify token is");
-    console.log(verifyToken);
+    // console.log("verify token is");
+    // console.log(verifyToken);
 
     // //now check in the database if the user is present with the valid role
     let { email, password, role } = verifyToken.userExist;
 
     const userExist = await Registration.findOne({ email, role, password });
-    console.log("userexist is");
-    console.log(userExist);
+    // console.log("userexist is");
+    // console.log(userExist);
     if (!userExist) {
       return res.json({ success: false, message: "User NOT exists" });
     } else {
@@ -35,7 +35,7 @@ const authenticate = async (req, res, next) => {
     }
   } catch (err) {
     // console.log(err);
-    console.log("inside catch");
+    // console.log("inside catch");
     return res.json({ success: false, message: "Something is missing" });
   }
 };
