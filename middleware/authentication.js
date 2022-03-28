@@ -29,12 +29,13 @@ const authenticate = async (req, res, next) => {
     if (!userExist) {
       return res.json({ success: false, message: "User NOT exists" });
     } else {
-      req.user = result;
+      req.user = userExist;
       req.role = role;
       next();
     }
   } catch (err) {
     // console.log(err);
+    console.log("inside catch");
     return res.json({ success: false, message: "Something is missing" });
   }
 };
