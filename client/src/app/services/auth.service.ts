@@ -50,6 +50,14 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.get<any>('/'+route,{headers:headers,})
    }
+
+   //   sending the registration data of patients, doctors and admins
+  registerUser(dataToSend){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    return this.http.post<any>('/register',dataToSend,{headers:headers})
+
+  }
    // logging out the user   
 logout(){
     let headers=new HttpHeaders();

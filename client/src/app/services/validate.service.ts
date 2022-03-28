@@ -23,4 +23,18 @@ export class ValidateService {
      return re.test(email);
   }
 
+   validateRegistration(dataToSend){
+
+      if(!dataToSend.name||!dataToSend.email||!dataToSend.phone||!dataToSend.address||!dataToSend.city||!dataToSend.state||!dataToSend.pincode||!dataToSend.role){
+            // console.log("normal checking");
+            return false;
+          }
+   
+  
+    else{ 
+      // console.log("else part");
+      return true;
+    }
+  }
+
 }

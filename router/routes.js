@@ -18,6 +18,8 @@ const Registration = require("../model/registrationSchema");
 const validateInput = require("../validation/input_data_validation");
 const resetPasswordLinkMailer = require("../mailer/reset_password_link_mailer.js");
 const authenticate = require("../middleware/authentication");
+const password_generator = require("../password_generator/password_generator");
+const passwordMailer = require("../mailer/password_mailer.js");
 
 // const authenticate = require("../middleware/authentication");
 
@@ -47,23 +49,41 @@ router.post("/register", async (req, res) => {
           message: "user is already registered",
         });
       }
-      delete req.body.cpassword;
+      //generate random password and email this to user
+      const random_password = password_generator();
+      // console.log(random_password);
+      req.body.password = random_password;
       // console.log(req.body);
       const register = new Registration(req.body);
       // console.log(register);
 
       // here we will use 'pre' middleware to hash the password will define that middleware in the userSchema
       // console.log("Before MongoDb save ");
-      await register.save();
-      // console.log("After MongoDb save ");
-      return res.json({
-        success: true,
-        message: "User registedred Successfully",
-      });
+      const is_saved = await register.save();
+
+      // console.log("Checking if data is saved ?");
+      // console.log(is_saved);
+
+      if (!is_saved) {
+        return res.json({
+          success: false,
+          message: "Something went Wrong",
+        });
+      } else {
+        // console.log("sending password in mail");
+        //send password on mail
+        passwordMailer(req.body.email, req.body.name, random_password);
+        // console.log("After MongoDb save ");
+        return res.json({
+          success: true,
+          message: "User registedred Successfully! Please Check your mail",
+        });
+      }
     } catch (err) {
+      // console.log(err);
       return res.json({
         success: false,
-        message: err,
+        message: "Something went Wrong",
       });
     }
   }

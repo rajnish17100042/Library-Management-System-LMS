@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const saltRounds = 12; //by default it is 10
 const registrationSchema = new mongoose.Schema({
-  user_id: {
-    type: String,
-    required: true,
-  },
+  // user_id: {
+  //   type: String,
+  //   required: true,
+  // },
   name: {
     type: String,
     required: true,

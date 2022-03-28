@@ -5,34 +5,18 @@ const validateInput = (req) => {
   // destructuring the data
 
   console.log(req.body);
-  const {
-    user_id,
-    name,
-    email,
-    phone,
-    address,
-    city,
-    state,
-    pincode,
-    role,
-    password,
-    cpassword,
-  } = req.body;
+  const { name, email, phone, address, city, state, pincode, role } = req.body;
 
   //   server side validation
   if (
-    (!user_id ||
-      !name ||
-      !email ||
-      !phone ||
-      !address ||
-      !city ||
-      !state ||
-      !pincode ||
-      !role ||
-      !password ||
-      !cpassword) &&
-    password !== cpassword
+    !name ||
+    !email ||
+    !phone ||
+    !address ||
+    !city ||
+    !state ||
+    !pincode ||
+    !role
   ) {
     return false;
   } else {

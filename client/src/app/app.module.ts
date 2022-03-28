@@ -14,6 +14,7 @@ import { FlashMessagesModule } from 'flash-messages-angular';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
     LoginComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    UserRegistrationComponent
   ],
   imports: [
     BrowserModule,
