@@ -17,12 +17,14 @@ const authenticate = async (req, res, next) => {
 
     // let's verify the token and get the user details
     const verifyToken = jwt.verify(token, secretKey);
+    console.log("verify token is");
     console.log(verifyToken);
 
     // //now check in the database if the user is present with the valid role
     let { email, password, role } = verifyToken.payload;
 
     const userExist = await Registration.findOne({ email, role, password });
+    console.log("userexist is");
     console.log(userExist);
     if (!userExist) {
       return res.json({ success: false, message: "User NOT exists" });
