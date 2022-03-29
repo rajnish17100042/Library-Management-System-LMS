@@ -310,6 +310,29 @@ router.get("/adminDashboard", authenticate, (req, res) => {
   }
 });
 
+router.get("/registrationDetails", authenticate, async (req, res) => {
+  if (req.role !== "admin") {
+    return res.json({
+      success: false,
+      message: "Please Login",
+    });
+  } else {
+    try {
+      const userExist = await Registration.find();
+      console.log(userExist);
+      if (!userExist) {
+        return res.json({ success: false, message: "No Users" });
+      } else {
+        console.log("storing data");
+        return res.json({ success: true, message: userExist });
+      }
+    } catch (err) {
+      // throw err;
+      return res.json({ success: false, message: "Some Error Occured!" });
+    }
+  }
+});
+
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");

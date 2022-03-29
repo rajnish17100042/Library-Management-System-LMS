@@ -58,6 +58,23 @@ export class AuthService {
     return this.http.post<any>('/register',dataToSend,{headers:headers})
 
   }
+
+  //calling backend routes to display all the registration details of students, librarians  and admin on the admin dashboard
+ getRegistrationDetails(){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/registrationDetails',{headers:headers,})
+   }
+
+//data sending to the backend to delete a user
+ deleteUser(role,email){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.delete<any>('/deleteUser/'+role+'/'+email,{headers:headers,})
+   }
+
    // logging out the user   
 logout(){
     let headers=new HttpHeaders();

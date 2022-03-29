@@ -1,0 +1,119 @@
+<div *ngIf="users.length">
+    <div class="wrapper">
+        <div class="main_content">
+            <!-- displaying student data  -->
+            <div class="header">
+                <h1>Students Details</h1>
+            </div>
+
+            <div class="info">
+                <table id="customers">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>State</th>
+
+                        <th>Action</th>
+                    </tr>
+
+
+
+                    <tr *ngFor="let student of students">
+                        <td>{{student.name}} </td>
+                        <td>{{student.email}} </td>
+                        <td>{{student.phone}} </td>
+                        <td>{{student.state}} </td>
+
+                        <td>
+                            <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit"></i>
+                            </a>
+                            <a [routerLink]="['/update-student-password/' + student.email]"><i class="fas fa-key"></i>
+                            </a>
+                            <a (click)="deleteUser('student',student.email)"><i class="fas fa-trash"
+                                    style="padding:0px 20px"></i></a>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+
+            <!-- displaying Librarian  data   -->
+            <div class="header">
+                <h1>Librarians List</h1>
+            </div>
+
+            <div class="info">
+                <table id="customers">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>State</th>
+
+                        <th>Action</th>
+                    </tr>
+
+
+                    <tr *ngFor="let librarian of librarians">
+                        <td>{{librarian.name}} </td>
+                        <td>{{librarian.email}} </td>
+                        <td>{{librarian.phone}} </td>
+                        <td>{{librarian.state}} </td>
+
+                        <td>
+                            <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit"></i>
+                            </a>
+                            <a [routerLink]="['/update-librarian-password/' + librarian.email]"><i
+                                    class="fas fa-key"></i>
+                            </a>
+                            <a (click)="deleteUser('librarian',librarian.email)"><i class="fas fa-trash"
+                                    style="padding:0px 20px"></i></a>
+
+                        </td>
+
+                    </tr>
+
+
+                </table>
+            </div>
+
+            <!-- displaying Admin data   -->
+            <div class="header">
+                <h1>Admins List</h1>
+            </div>
+
+            <div class="info">
+                <table id="customers">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+
+                        <th>Action</th>
+                    </tr>
+
+                    <tr *ngFor="let admin of admins">
+
+                        <td>{{admin.name}}</td>
+                        <td>{{admin.email}} </td>
+                        <td>{{admin.phone}} </td>
+                        <td>
+                            <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit"></i>
+                            </a>
+                            <a [routerLink]="['/admin/update-admin-password/' + admin.email]"><i class="fas fa-key"></i>
+                            </a>
+                            <a (click)="deleteUser('admin',admin.email)"><i class="fas fa-trash"
+                                    style="padding:0px 20px"></i></a>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
