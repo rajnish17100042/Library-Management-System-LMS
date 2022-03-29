@@ -67,6 +67,7 @@ login(){
         //  this.router.navigate(['/librarian/dashboard']);
         this.flashMessage.show("Librarian Login",{cssClass:'alert-success',timeout:3000});
         // console.log("Librarian");
+         this.router.navigate(['/librarian/dashboard']);
 
 
         }else if(data.role==='student'){
