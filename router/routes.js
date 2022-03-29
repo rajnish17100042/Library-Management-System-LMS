@@ -316,7 +316,7 @@ router.get("/adminDashboard", authenticate, (req, res) => {
 });
 
 // route for librarian dashboard page authentication
-router.get("/adminDashboard", authenticate, (req, res) => {
+router.get("/librarianDashboard", authenticate, (req, res) => {
   if (req.role !== "librarian") {
     return res.json({
       success: false,
