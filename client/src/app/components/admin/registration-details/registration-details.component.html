@@ -26,10 +26,10 @@
                         <td>{{student.state}} </td>
 
                         <td>
-                            <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit mr-2"></i>
+                            <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit mr-4"></i>
                             </a>
                             <a [routerLink]="['/update-student-password/' + student.email]"><i
-                                    class="fas fa-key mr-2"></i>
+                                    class="fas fa-key mr-4"></i>
                             </a>
                             <a (click)="deleteUser('student',student.email)"><i class="fas fa-trash"></i></a>
 
@@ -64,10 +64,10 @@
                         <td>{{librarian.state}} </td>
 
                         <td>
-                            <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit mr-2"></i>
+                            <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit mr-4"></i>
                             </a>
                             <a [routerLink]="['/update-librarian-password/' + librarian.email]"><i
-                                    class="fas fa-key mr-2"></i>
+                                    class="fas fa-key mr-4"></i>
                             </a>
                             <a (click)="deleteUser('librarian',librarian.email)"><i class="fas fa-trash"></i></a>
 
@@ -100,10 +100,10 @@
                         <td>{{admin.email}} </td>
                         <td>{{admin.phone}} </td>
                         <td>
-                            <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit mr-2"></i>
+                            <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit mr-4"></i>
                             </a>
                             <a [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
-                                    class="fas fa-key mr-2"></i>
+                                    class="fas fa-key mr-4"></i>
                             </a>
                             <a (click)="deleteUser('admin',admin.email)"><i class="fas fa-trash"></i></a>
 
