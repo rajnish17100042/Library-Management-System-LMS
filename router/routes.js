@@ -299,7 +299,7 @@ router.get("/adminDashboard", authenticate, (req, res) => {
   if (req.role !== "admin") {
     return res.json({
       success: false,
-      message: "Page can't be rendered! Login First",
+      message: "Please Login",
     });
   } else {
     // console.log("admin data is:");
