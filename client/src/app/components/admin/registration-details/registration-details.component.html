@@ -3,7 +3,7 @@
         <div class="main_content">
             <!-- displaying student data  -->
             <div class="header">
-                <h1>Students Details</h1>
+                <h1>Student List</h1>
             </div>
 
             <div class="info">
@@ -26,12 +26,12 @@
                         <td>{{student.state}} </td>
 
                         <td>
-                            <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit"></i>
+                            <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit mr-2"></i>
                             </a>
-                            <a [routerLink]="['/update-student-password/' + student.email]"><i class="fas fa-key"></i>
+                            <a [routerLink]="['/update-student-password/' + student.email]"><i
+                                    class="fas fa-key mr-2"></i>
                             </a>
-                            <a (click)="deleteUser('student',student.email)"><i class="fas fa-trash"
-                                    style="padding:0px 20px"></i></a>
+                            <a (click)="deleteUser('student',student.email)"><i class="fas fa-trash"></i></a>
 
                         </td>
 
@@ -42,7 +42,7 @@
 
             <!-- displaying Librarian  data   -->
             <div class="header">
-                <h1>Librarians List</h1>
+                <h1>Librarian List</h1>
             </div>
 
             <div class="info">
@@ -64,13 +64,12 @@
                         <td>{{librarian.state}} </td>
 
                         <td>
-                            <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit"></i>
+                            <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit mr-2"></i>
                             </a>
                             <a [routerLink]="['/update-librarian-password/' + librarian.email]"><i
-                                    class="fas fa-key"></i>
+                                    class="fas fa-key mr-2"></i>
                             </a>
-                            <a (click)="deleteUser('librarian',librarian.email)"><i class="fas fa-trash"
-                                    style="padding:0px 20px"></i></a>
+                            <a (click)="deleteUser('librarian',librarian.email)"><i class="fas fa-trash"></i></a>
 
                         </td>
 
@@ -82,7 +81,7 @@
 
             <!-- displaying Admin data   -->
             <div class="header">
-                <h1>Admins List</h1>
+                <h1>Admin List</h1>
             </div>
 
             <div class="info">
@@ -101,12 +100,12 @@
                         <td>{{admin.email}} </td>
                         <td>{{admin.phone}} </td>
                         <td>
-                            <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit"></i>
+                            <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit mr-2"></i>
                             </a>
-                            <a [routerLink]="['/admin/update-admin-password/' + admin.email]"><i class="fas fa-key"></i>
+                            <a [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
+                                    class="fas fa-key mr-2"></i>
                             </a>
-                            <a (click)="deleteUser('admin',admin.email)"><i class="fas fa-trash"
-                                    style="padding:0px 20px"></i></a>
+                            <a (click)="deleteUser('admin',admin.email)"><i class="fas fa-trash"></i></a>
 
                         </td>
 
