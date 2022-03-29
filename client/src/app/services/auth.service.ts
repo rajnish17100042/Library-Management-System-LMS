@@ -43,7 +43,7 @@ export class AuthService {
     return this.http.post<any>('/resetPassword/'+params.role+'/'+params.email+'/'+params.token,password,{headers:headers,})
    }
 
- //admin dashboard protection  
+ //secured page protection
  authenticateRoute(route){
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');

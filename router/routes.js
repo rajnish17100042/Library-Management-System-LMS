@@ -292,7 +292,7 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
   }
 });
 
-// route for admin dashboard
+// route for admin dashboard page authentication
 router.get("/adminDashboard", authenticate, (req, res) => {
   // console.log("Hello");
   // double checking
