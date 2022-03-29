@@ -32,7 +32,8 @@ export class UserRegistrationComponent implements OnInit {
   
   this.authService.authenticateRoute(route).subscribe(data=>{
       if(data.success){
-       this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});
+        this.is_render=true;
+       this.flashMessage.show("Rendering Page Please wait",{cssClass:'alert-success',timeout:3000});
       }else{
         this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
          this.router.navigate(['/login']);
