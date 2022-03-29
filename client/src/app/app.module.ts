@@ -16,6 +16,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 import { RegistrationDetailsComponent } from './components/admin/registration-details/registration-details.component';
+import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RegistrationDetailsComponent } from './components/admin/registration-de
     ResetPasswordComponent,
     AdminDashboardComponent,
     UserRegistrationComponent,
-    RegistrationDetailsComponent
+    RegistrationDetailsComponent,
+    LibrarianDashboardComponent
   ],
   imports: [
     BrowserModule,

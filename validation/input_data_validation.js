@@ -24,4 +24,33 @@ const validateInput = (req) => {
   }
 };
 
-module.exports = validateInput;
+const validateBookDetails = (data) => {
+  console.log(data);
+  const {
+    book_id,
+    bk_title,
+    bk_name,
+    publisher,
+    author,
+    bk_copies,
+    bk_category,
+    available_copies,
+  } = data;
+
+  //   server side validation
+  if (
+    !book_id ||
+    !bk_title ||
+    !bk_name ||
+    !publisher ||
+    !author ||
+    !bk_copies ||
+    !bk_category ||
+    !available_copies
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+};
+module.exports = { validateInput, validateBookDetails };

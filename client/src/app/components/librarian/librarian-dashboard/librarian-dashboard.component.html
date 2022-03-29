@@ -1,0 +1,48 @@
+<div *ngIf="librarianData">
+    <div class="wrapper">
+
+
+        <div class="main_content">
+            <div class="header">
+                Welcome <strong>{{librarianData.name}} </strong> !! Have a nice day.
+                <button (click)="logout()">Logout</button>
+
+                <button>
+                    <a [routerLink]="['/update-librarian-password/' + librarianData.email]"><i
+                            class="fas  fa-key">Update
+                            Password</i>
+                    </a>
+                </button>
+                <button>
+                    <a routerLink="/upload-image"><i class="fas fa-image">Upload Image</i></a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- details regarding registration   -->
+    <div class="header">
+        <h1>Registration Details</h1>
+    </div>
+    <div class="info">
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>State</th>
+
+
+            </tr>
+
+
+            <tr>
+                <td>{{librarianData.name}} </td>
+                <td>{{librarianData.email}} </td>
+                <td>{{librarianData.phone}} </td>
+                <td>{{librarianData.state}} </td>
+
+            </tr>
+        </table>
+    </div>
+</div>

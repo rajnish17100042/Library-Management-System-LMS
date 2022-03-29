@@ -15,7 +15,12 @@ const db = require("../db/conn");
 
 const Registration = require("../model/registrationSchema");
 
-const validateInput = require("../validation/input_data_validation");
+const BookDetail = require("../model/bookDetailsSchema");
+
+const {
+  validateInput,
+  validateBookDetails,
+} = require("../validation/input_data_validation");
 const resetPasswordLinkMailer = require("../mailer/reset_password_link_mailer.js");
 const authenticate = require("../middleware/authentication");
 const password_generator = require("../password_generator/password_generator");
@@ -310,6 +315,20 @@ router.get("/adminDashboard", authenticate, (req, res) => {
   }
 });
 
+// route for librarian dashboard page authentication
+router.get("/adminDashboard", authenticate, (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({
+      success: false,
+      message: "Please Login",
+    });
+  } else {
+    const librarianData = req.user;
+    // console.log(adminData[0]);
+    return res.json({ success: true, librarianData });
+  }
+});
+//route to get registration details
 router.get("/registrationDetails", authenticate, async (req, res) => {
   if (req.role !== "admin") {
     return res.json({
@@ -330,6 +349,34 @@ router.get("/registrationDetails", authenticate, async (req, res) => {
       // throw err;
       return res.json({ success: false, message: "Some Error Occured!" });
     }
+  }
+});
+
+//route to enter book details in database
+router.post("/bookDetails", async (req, res) => {
+  // console.log(req.body);
+  // server side data validation
+  try {
+    const is_validated = validateBookDetails(req.body);
+    if (!is_validated) {
+      return res.json({
+        success: false,
+        message: "Please fill the data properly!",
+      });
+    } else {
+      // store the book details into database
+      const bookDetail = new BookDetail(req.body);
+      const is_saved = await bookDetail.save();
+      console.log(is_saved);
+      if (!is_saved) {
+        return res.json({ success: false, message: "Some Error Occured" });
+      } else {
+        return res.json({ success: true, message: "Book Details Added" });
+      }
+    }
+  } catch (err) {
+    console.log(err);
+    return res.json({ success: false, message: "Some Error Occured!" });
   }
 });
 

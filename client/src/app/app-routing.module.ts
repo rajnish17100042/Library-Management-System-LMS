@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
 import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 const routes: Routes = [
   // routing for the common login page 
@@ -24,7 +25,12 @@ const routes: Routes = [
    // routing for Admin Dashboard
   {
    path:'admin/dashboard',
-   component: AdminDashboardComponent,
+   component: LibrarianDashboardComponent,
+  },
+   // routing for Librarian Dashboard
+  {
+   path:'librarian/dashboard',
+   component: LibrarianDashboardComponent,
   },
    // routing for user Registration 
   {
@@ -38,4 +44,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent]
