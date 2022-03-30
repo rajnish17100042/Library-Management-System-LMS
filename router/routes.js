@@ -401,7 +401,7 @@ router.post("/addBook", authenticate, async (req, res) => {
 
 // get book details
 router.get("/getBooks", authenticate, async (req, res) => {
-  if (req.role !== "librarian" || req.role !== "student") {
+  if (req.role !== "librarian" && req.role !== "student") {
     return res.json({
       success: false,
       message: "Please Login",
