@@ -52,7 +52,11 @@ const routes: Routes = [
   },
     // display books
   {
-   path:'*/display-books',
+   path:'student/display-books',
+   component: DisplayBooksComponent,
+  },
+   {
+   path:'librarian/display-books',
    component: DisplayBooksComponent,
   },
 ];
