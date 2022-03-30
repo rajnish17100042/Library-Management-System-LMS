@@ -34,7 +34,6 @@ const validateBookDetails = (data) => {
     author,
     bk_copies,
     bk_category,
-    available_copies,
   } = data;
 
   //   server side validation
@@ -45,8 +44,7 @@ const validateBookDetails = (data) => {
     !publisher ||
     !author ||
     !bk_copies ||
-    !bk_category ||
-    !available_copies
+    !bk_category
   ) {
     return false;
   } else {

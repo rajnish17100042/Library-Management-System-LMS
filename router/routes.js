@@ -353,7 +353,7 @@ router.get("/registrationDetails", authenticate, async (req, res) => {
 });
 
 //route to enter book details in database
-router.post("/bookDetails", async (req, res) => {
+router.post("/addBook", authenticate, async (req, res) => {
   // console.log(req.body);
   // server side data validation
   try {
@@ -365,6 +365,10 @@ router.post("/bookDetails", async (req, res) => {
       });
     } else {
       // store the book details into database
+      // add available number of book copies to req.body
+      req.body.available_copies = req.body.bk_copies;
+      req.body.added_by = req.user.email;
+      console.log(req.body);
       const bookDetail = new BookDetail(req.body);
       const is_saved = await bookDetail.save();
       console.log(is_saved);

@@ -37,6 +37,10 @@ const bookDetailsSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  added_by: {
+    type: String,
+    required: true,
+  },
 });
 
 const bookDetail = mongoose.model("bookDetail", bookDetailsSchema);

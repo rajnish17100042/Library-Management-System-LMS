@@ -29,12 +29,21 @@ export class ValidateService {
             // console.log("normal checking");
             return false;
           }
-   
-  
-    else{ 
+   else{ 
       // console.log("else part");
       return true;
     }
   }
 
+  validateBookDetails(data){
+
+      if(!data.book_id||!data.bk_title||!data.bk_name||!data.publisher||!data.author||!data.bk_copies||!data.category){
+            
+            return false;
+          }
+   else{ 
+      // console.log("else part");
+      return true;
+    }
+  }
 }

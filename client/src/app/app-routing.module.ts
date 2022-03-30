@@ -5,6 +5,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
+import { AddBookComponent } from './components/librarian/add-book/add-book.component';
 import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 const routes: Routes = [
   // routing for the common login page 
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
    path:'admin/user-registration',
    component: UserRegistrationComponent,
+  },
+    // routing for librarian to add book
+  {
+   path:'librarian/add-book',
+   component: AddBookComponent,
   },
 ];
 

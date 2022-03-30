@@ -76,6 +76,14 @@ export class AuthService {
     return this.http.get<any>('/librarianDashboard',{headers:headers,})
    }
 
+  //add book
+ addBook(data){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('/librarianDashboard',data,{headers:headers,})
+   } 
+
 //data sending to the backend to delete a user
  deleteUser(role,email){
     let headers=new HttpHeaders();

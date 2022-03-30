@@ -17,6 +17,7 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
 import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 import { RegistrationDetailsComponent } from './components/admin/registration-details/registration-details.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
+import { AddBookComponent } from './components/librarian/add-book/add-book.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LibrarianDashboardComponent } from './components/librarian/librarian-da
     AdminDashboardComponent,
     UserRegistrationComponent,
     RegistrationDetailsComponent,
-    LibrarianDashboardComponent
+    LibrarianDashboardComponent,
+    AddBookComponent
   ],
   imports: [
     BrowserModule,

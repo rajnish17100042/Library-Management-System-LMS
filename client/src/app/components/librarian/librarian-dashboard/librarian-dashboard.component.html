@@ -6,7 +6,9 @@
             <div class="header">
                 Welcome <strong>{{librarianData.name}} </strong> !! Have a nice day.
                 <button (click)="logout()">Logout</button>
-
+                <button>
+                    <a routerLink="/librarian/add-book"><i class="fas fa-book">Add Book</i></a>
+                </button>
                 <button>
                     <a [routerLink]="['/update-librarian-password/' + librarianData.email]"><i
                             class="fas  fa-key">Update

@@ -1,0 +1,24 @@
+<div *ngIf="is_render">
+    <form (submit)="addBook()">
+        <div class="container">
+            <h1>Add Book</h1>
+            <p>Please fill in this form to add a book</p>
+            <hr />
+
+            <input type="text" [(ngModel)]="book_id" name="book_id" placeholder="Enter Id of book" required />
+            <input type="text" [(ngModel)]="bk_title" name="bk_title" placeholder="Enter Title" required />
+            <input type="text" [(ngModel)]="bk_name" name="bk_name" placeholder="Enter Book Name" required />
+            <input type="text" [(ngModel)]="publisher" name="publisher" placeholder="Enter Publisher" required />
+            <input type="text" [(ngModel)]="author" name="author" placeholder="Enter Author Name" required />
+            <input type="number" [(ngModel)]="bk_copies" name="bk_copies" placeholder="Enter Total Number of Books"
+                required />
+            <input type="text" [(ngModel)]="bk_category" name="bk_category" placeholder="Enter Category" required />
+
+            <hr />
+
+            <button type="submit" class="registerbtn">
+                Add
+            </button>
+        </div>
+    </form>
+</div>
