@@ -65,15 +65,16 @@ login(){
         }
         else if(data.role==='librarian'){
         //  this.router.navigate(['/librarian/dashboard']);
-        this.flashMessage.show("Librarian Login",{cssClass:'alert-success',timeout:3000});
+        // this.flashMessage.show("Librarian Login",{cssClass:'alert-success',timeout:3000});
         // console.log("Librarian");
          this.router.navigate(['/librarian/dashboard']);
 
 
         }else if(data.role==='student'){
         //  this.router.navigate(['/student/dashboard']);
-        this.flashMessage.show("Student Login",{cssClass:'alert-success',timeout:3000});
+        // this.flashMessage.show("Student Login",{cssClass:'alert-success',timeout:3000});
         // console.log("Student");
+        this.router.navigate(['/student/dashboard']);
 
 
         }

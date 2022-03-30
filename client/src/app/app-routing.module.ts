@@ -5,6 +5,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
+import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { AddBookComponent } from './components/librarian/add-book/add-book.component';
 import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 const routes: Routes = [
@@ -33,6 +34,11 @@ const routes: Routes = [
    path:'librarian/dashboard',
    component: LibrarianDashboardComponent,
   },
+    // routing for student Dashboard
+  {
+   path:'student/dashboard',
+   component: StudentDashboardComponent,
+  },
    // routing for user Registration 
   {
    path:'admin/user-registration',
@@ -50,4 +56,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent]

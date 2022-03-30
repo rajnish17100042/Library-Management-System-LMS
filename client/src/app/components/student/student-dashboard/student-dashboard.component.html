@@ -1,0 +1,47 @@
+<div *ngIf="studentData">
+    <div class="wrapper">
+
+
+        <div class="main_content">
+            <div class="header">
+                Welcome <strong>{{studentData.name}} </strong> !! Have a nice day.
+                <button (click)="logout()">Logout</button>
+
+                <button>
+                    <a [routerLink]="['/update-student-password/' + studentData.email]"><i class="fas  fa-key">Update
+                            Password</i>
+                    </a>
+                </button>
+                <button>
+                    <a routerLink="/upload-image"><i class="fas fa-image">Upload Image</i></a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- details regarding registration   -->
+    <div class="header">
+        <h1>Registration Details</h1>
+    </div>
+    <div class="info">
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>State</th>
+
+
+            </tr>
+
+
+            <tr>
+                <td>{{studentData.name}} </td>
+                <td>{{studentData.email}} </td>
+                <td>{{studentData.phone}} </td>
+                <td>{{studentData.state}} </td>
+
+            </tr>
+        </table>
+    </div>
+</div>

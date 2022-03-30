@@ -324,10 +324,25 @@ router.get("/librarianDashboard", authenticate, (req, res) => {
     });
   } else {
     const librarianData = req.user;
-    // console.log(adminData[0]);
+
     return res.json({ success: true, librarianData });
   }
 });
+
+// route for student dashboard page authentication
+router.get("/studentDashboard", authenticate, (req, res) => {
+  if (req.role !== "student") {
+    return res.json({
+      success: false,
+      message: "Please Login",
+    });
+  } else {
+    const studentData = req.user;
+
+    return res.json({ success: true, studentData });
+  }
+});
+
 //route to get registration details
 router.get("/registrationDetails", authenticate, async (req, res) => {
   if (req.role !== "admin") {
