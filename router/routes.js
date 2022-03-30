@@ -428,7 +428,8 @@ router.post("/issueBook", authenticate, async (req, res) => {
   if (req.role !== "student") {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
-  const { book_id } = req.body;
+  console.log(req.body);
+  const book_id = req.body;
   console.log(book_id);
   let issue_date = new Date().toLocaleDateString();
   console.log(issue_date);
