@@ -16,6 +16,7 @@ const db = require("../db/conn");
 const Registration = require("../model/registrationSchema");
 
 const BookDetail = require("../model/bookDetailsSchema");
+const IssueBook = require("../model/issueBookSchema");
 
 const {
   validateInput,
@@ -270,7 +271,7 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
                 message: "OPPS!! Something went wrong",
               });
             } else {
-              const isUpdated = await Registration.update(
+              const isUpdated = await Registration.updateOne(
                 { email, role },
                 { $set: { password: hash } }
               );
@@ -419,6 +420,51 @@ router.get("/getBooks", authenticate, async (req, res) => {
       // throw err;
       return res.json({ success: false, message: "Some Error Occured!" });
     }
+  }
+});
+
+// issue a book
+router.post("/issueBook", authenticate, async (req, res) => {
+  if (req.role !== "student") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  const { book_id } = req.body;
+  console.log(book_id);
+  let issue_date = new Date().toLocaleDateString();
+  console.log(issue_date);
+  let return_date = new Date(
+    Date.now() + 7 * 24 * 60 * 60 * 1000
+  ).toLocaleDateString();
+  console.log(return_date);
+  const issueData = {
+    issue_by: req.user.email,
+    book_id,
+    issue_date,
+    return_date,
+  };
+  try {
+    //  first check if the book is already issued by the user
+
+    const is_issued = await IssueBook.findOne({
+      book_id,
+      issue_by: issueData.issue_by,
+    });
+    console.log(is_issued);
+    if (is_issued) {
+      return res.json({ success: false, message: "Already Issued this book" });
+    } else {
+      const issueBook = new IssueBook(issueData);
+      const is_saved = await issueBook.save();
+      console.log(is_saved);
+      if (!is_saved) {
+        return res.json({ success: false, message: "Some Error Occured" });
+      } else {
+        return res.json({ success: true, message: "Book Issued" });
+      }
+    }
+  } catch (err) {
+    // throw err;
+    return res.json({ success: false, message: "Some Error Occured!" });
   }
 });
 

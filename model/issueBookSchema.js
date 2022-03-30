@@ -12,18 +12,20 @@ const issueBookSchema = new mongoose.Schema({
   issue_days: {
     type: Number,
     required: true,
+    default: 7,
   },
   issue_date: {
-    type: string,
+    type: String,
     required: true,
   },
   return_date: {
-    type: string,
+    type: String,
     required: true,
   },
   fine: {
     type: Number,
     required: true,
+    default: 0,
   },
 
   is_return: {
@@ -33,5 +35,5 @@ const issueBookSchema = new mongoose.Schema({
   },
 });
 
-const isseuBook = mongoose.model("issueBook", issueBookSchema);
+const issueBook = mongoose.model("issueBook", issueBookSchema);
 module.exports = issueBook;

@@ -29,8 +29,25 @@ export class DisplayBooksComponent implements OnInit {
     }); 
   }
 
-  issueBook(book_id){
-  console.log(book_id);
+  issueBook(id){
+    let finaldelete = confirm("want to issue this book ??");
+
+    if (finaldelete == true) {
+        //  console.log(role,id);
+      this.authService.issueBook(id).subscribe(
+        data => {
+        if(data.success){
+            this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});
+            this.router.navigate(['/student/dashboard']);
+        }
+        else{
+              this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
+
+        }
+        }
+      
+      );
+    }
   }
 
 }
