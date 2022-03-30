@@ -37,7 +37,7 @@ export class ValidateService {
 
   validateBookDetails(data){
 
-      if(!data.book_id||!data.bk_title||!data.bk_name||!data.publisher||!data.author||!data.bk_copies||!data.category){
+      if(!data.book_id||!data.bk_title||!data.bk_name||!data.publisher||!data.author||!data.bk_copies||!data.bk_category){
             
             return false;
           }
