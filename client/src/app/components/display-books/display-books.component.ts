@@ -30,13 +30,13 @@ export class DisplayBooksComponent implements OnInit {
   }
 
   issueBook(id){
-    let book_id=id;
-    console.log(book_id);
+    
+    console.log(id);
     let finaldelete = confirm("want to issue this book ??");
 
     if (finaldelete == true) {
-         console.log(book_id);
-      this.authService.issueBook(book_id).subscribe(
+         console.log(id);
+      this.authService.issueBook({book_id:id}).subscribe(
         data => {
         if(data.success){
             this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});
