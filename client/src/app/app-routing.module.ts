@@ -7,6 +7,7 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { AddBookComponent } from './components/librarian/add-book/add-book.component';
+import { DisplayBooksComponent } from './components/display-books/display-books.component';
 import { UserRegistrationComponent } from './components/admin/user-registration/user-registration.component';
 const routes: Routes = [
   // routing for the common login page 
@@ -49,6 +50,11 @@ const routes: Routes = [
    path:'librarian/add-book',
    component: AddBookComponent,
   },
+    // display books
+  {
+   path:'/*/display-books',
+   component: DisplayBooksComponent,
+  },
 ];
 
 @NgModule({
@@ -56,4 +62,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent]

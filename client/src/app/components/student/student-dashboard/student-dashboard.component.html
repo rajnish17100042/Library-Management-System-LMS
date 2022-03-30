@@ -6,7 +6,10 @@
             <div class="header">
                 Welcome <strong>{{studentData.name}} </strong> !! Have a nice day.
                 <button (click)="logout()">Logout</button>
-
+                <button>
+                    <a [routerLink]="['/student/display-books']"><i class="fas  fa-book">Show Books</i>
+                    </a>
+                </button>
                 <button>
                     <a [routerLink]="['/update-student-password/' + studentData.email]"><i class="fas  fa-key">Update
                             Password</i>

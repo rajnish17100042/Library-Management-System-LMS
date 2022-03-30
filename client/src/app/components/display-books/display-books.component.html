@@ -1,0 +1,46 @@
+<div *ngIf="books">
+    <div class="wrapper">
+        <div class="main_content">
+            <!-- displaying Books  -->
+            <div class="header">
+                <h1>Books</h1>
+            </div>
+
+            <div class="info">
+                <table id="customers">
+                    <tr>
+                        <th>Title</th>
+                        <th>Name</th>
+                        <th>Publisher</th>
+                        <th>Author</th>
+                        <th>Category</th>
+
+                        <th>Action</th>
+                    </tr>
+
+
+
+                    <tr *ngFor="let book of books">
+                        <td>{{book.bk_title}} </td>
+                        <td>{{book.bk_name}} </td>
+                        <td>{{book.publisher}} </td>
+                        <td>{{book.author}} </td>
+                        <td>{{book.bk_category}} </td>
+
+                        <td>
+                            <button (click)="issueBook(book.book_id)">Issue</button>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>

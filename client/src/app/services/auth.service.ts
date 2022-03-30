@@ -83,6 +83,7 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.get<any>('/studentDashboard',{headers:headers,})
    }
+
   //add book
  addBook(data){
     let headers=new HttpHeaders();
@@ -90,6 +91,15 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.post<any>('/addBook',data,{headers:headers,})
    } 
+
+ //get book details
+ getBookDetails(){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/getBooks',{headers:headers,})
+   } 
+
 
 //data sending to the backend to delete a user
  deleteUser(role,email){

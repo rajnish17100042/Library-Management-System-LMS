@@ -399,6 +399,29 @@ router.post("/addBook", authenticate, async (req, res) => {
   }
 });
 
+// get book details
+router.get("/getBooks", authenticate, async (req, res) => {
+  if (req.role !== "librarian" || req.role !== "student") {
+    return res.json({
+      success: false,
+      message: "Please Login",
+    });
+  } else {
+    try {
+      const books = await BookDetail.find();
+      console.log(books);
+      if (!books) {
+        return res.json({ success: false, message: "No Books" });
+      } else {
+        return res.json({ success: true, books });
+      }
+    } catch (err) {
+      // throw err;
+      return res.json({ success: false, message: "Some Error Occured!" });
+    }
+  }
+});
+
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");
