@@ -145,7 +145,7 @@ router.post("/login", async (req, res) => {
             expiresIn: "15min",
             httpOnly: true,
           });
-          // console.log(token);
+          console.log(token);
           res.json({
             success: true,
             access_token: token,
