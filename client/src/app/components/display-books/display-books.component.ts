@@ -30,11 +30,12 @@ export class DisplayBooksComponent implements OnInit {
   }
 
   issueBook(id){
+    let book_id=id
     let finaldelete = confirm("want to issue this book ??");
 
     if (finaldelete == true) {
         //  console.log(role,id);
-      this.authService.issueBook(id).subscribe(
+      this.authService.issueBook(book_id).subscribe(
         data => {
         if(data.success){
             this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});
