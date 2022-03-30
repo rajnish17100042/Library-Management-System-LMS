@@ -30,11 +30,12 @@ export class DisplayBooksComponent implements OnInit {
   }
 
   issueBook(id){
-    let book_id=id
+    let book_id=id;
+    console.log(book_id);
     let finaldelete = confirm("want to issue this book ??");
 
     if (finaldelete == true) {
-        //  console.log(role,id);
+         console.log(book_id);
       this.authService.issueBook(book_id).subscribe(
         data => {
         if(data.success){
