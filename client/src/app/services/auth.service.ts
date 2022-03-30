@@ -81,7 +81,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.post<any>('/librarianDashboard',data,{headers:headers,})
+    return this.http.post<any>('/addBook',data,{headers:headers,})
    } 
 
 //data sending to the backend to delete a user
