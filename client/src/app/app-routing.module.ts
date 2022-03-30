@@ -26,7 +26,7 @@ const routes: Routes = [
    // routing for Admin Dashboard
   {
    path:'admin/dashboard',
-   component: LibrarianDashboardComponent,
+   component: AdminDashboardComponent,
   },
    // routing for Librarian Dashboard
   {
