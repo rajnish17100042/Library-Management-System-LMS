@@ -20,6 +20,7 @@ import { LibrarianDashboardComponent } from './components/librarian/librarian-da
 import { AddBookComponent } from './components/librarian/add-book/add-book.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
+import { DisplayIssuedbooksComponent } from './components/student/display-issuedbooks/display-issuedbooks.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
     LibrarianDashboardComponent,
     AddBookComponent,
     StudentDashboardComponent,
-    DisplayBooksComponent
+    DisplayBooksComponent,
+    DisplayIssuedbooksComponent
   ],
   imports: [
     BrowserModule,

@@ -469,6 +469,56 @@ router.post("/issueBook", authenticate, async (req, res) => {
   }
 });
 
+// get issued book details
+router.get("/getIssuedBooks", authenticate, async (req, res) => {
+  if (req.role !== "student") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  try {
+    const user = req.user.email;
+    // get all the books issued by the user from issuebooks mongodb collection
+    const issuedBooks = await IssueBook.find({ issue_by: user });
+    console.log(issuedBooks);
+    //now get all the book ids
+    const book_ids = [];
+    for (let i = 0; i < issuedBooks.length; i++) {
+      book_ids.push(issuedBooks[i].book_id);
+    }
+    console.log(book_ids);
+
+    //now get all the detalis of books issued by user from bookdetails collection
+    const bookDetails = await BookDetail.find({ book_id: book_ids });
+    console.log(bookDetails);
+
+    const combined_book_data = [];
+    for (let i = 0; i < bookDetails.length; i++) {
+      let m = -1;
+      for (let j = 0; j < issuedBooks.length; j++) {
+        if (bookDetails[i].book_id === issuedBooks[j].book_id) {
+          m = j;
+          break;
+        }
+      }
+      combined_book_data.push({
+        book_id: bookDetails[i].book_id,
+        bk_name: bookDetails[i].bk_name,
+        author: bookDetails[i].author,
+        publisher: bookDetails[i].publisher,
+        bk_category: bookDetails[i].bk_category,
+        issue_date: issuedBooks[m].issue_date,
+        return_date: issuedBooks[m].return_date,
+        fine: issuedBooks[m].fine,
+      });
+    }
+
+    console.log(combined_book_data);
+    return res.json({ success: true, books: combined_book_data });
+  } catch (err) {
+    // throw err
+    return res.json({ success: false, message: "Please Try Again" });
+  }
+});
+
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");

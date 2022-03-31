@@ -1,0 +1,35 @@
+<div *ngIf="issuedBooks">
+    <div class="wrapper">
+        <div class="main_content">
+            <!-- displaying issued book data  -->
+            <div class="header">
+                <h1>Books Issued</h1>
+            </div>
+
+            <div class="info">
+                <table id="customers">
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Category</th>
+                        <th>Issue Date</th>
+                        <th>Return Date</th>
+                        <th>Fine</th>
+                    </tr>
+
+                    <tr *ngFor="let book of issuedBooks">
+                        <td>{{book.bk_name}} </td>
+                        <td>{{book.author}} </td>
+                        <td>{{book.publisher}} </td>
+                        <td>{{book.bk_category}} </td>
+                        <td>{{book.issue_date}} </td>
+                        <td>{{book.return_date}} </td>
+                        <td>{{book.fine} </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
