@@ -510,7 +510,8 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
         fine: issuedBooks[m].fine,
       });
     }
-
+    //time complexity is O(n*n)
+    // use binary search to get nlogn time complexity
     console.log(combined_book_data);
     return res.json({ success: true, books: combined_book_data });
   } catch (err) {
