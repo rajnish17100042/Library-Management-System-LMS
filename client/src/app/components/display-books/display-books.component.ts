@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import {ValidateService} from '../../services/validate.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
@@ -16,6 +17,7 @@ export class DisplayBooksComponent implements OnInit {
     private flashMessage:FlashMessagesService,
     private authService:AuthService,
     private router:Router,
+    private location: Location,
   ) { }
 
   ngOnInit(){
@@ -31,11 +33,11 @@ export class DisplayBooksComponent implements OnInit {
 
   issueBook(id){
     
-    console.log(id);
+    // console.log(id);
     let finaldelete = confirm("want to issue this book ??");
 
     if (finaldelete == true) {
-         console.log(id);
+      
       this.authService.issueBook({book_id:id}).subscribe(
         data => {
         if(data.success){
@@ -51,5 +53,7 @@ export class DisplayBooksComponent implements OnInit {
       );
     }
   }
-
+ goBack() {
+    this.location.back(); // go back to previous location
+  }
 }

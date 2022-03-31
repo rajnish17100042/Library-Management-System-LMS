@@ -28,7 +28,7 @@
                         <td>{{book.bk_category}} </td>
 
                         <td>
-                            <button (click)="issueBook(book.book_id)">Issue</button>
+                            <button class="btn btn-success" (click)="issueBook(book.book_id)">Issue</button>
 
                         </td>
 
@@ -36,11 +36,7 @@
 
                 </table>
             </div>
-
-
-
-
-
         </div>
+        <button class="btn btn-primary" (click)="goBack()"><i class="fa fa-backward">Back</i></button>
     </div>
 </div>
