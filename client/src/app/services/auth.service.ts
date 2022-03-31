@@ -113,7 +113,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.get<any>('/getIssuedBook',{headers:headers,})
+    return this.http.get<any>('/getIssuedBooks',{headers:headers,})
    } 
 
 //data sending to the backend to delete a user
