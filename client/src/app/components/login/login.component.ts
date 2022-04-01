@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   email:String;
   password:String;
   role:String;
-
+   is_render:boolean = false;
    constructor(
     private validateService:ValidateService,
     private flashMessage:FlashMessagesService,
@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
         }else if(data.role==='student'){
           this.router.navigate(['/student/dashboard']);
         }
-
-        
-       }
+      }else{
+        this.is_render=true;
+      }
     }); 
   }
 
