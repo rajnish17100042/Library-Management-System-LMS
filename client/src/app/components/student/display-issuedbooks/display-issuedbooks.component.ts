@@ -9,7 +9,7 @@ import {FlashMessagesService} from 'flash-messages-angular';
   styleUrls: ['./display-issuedbooks.component.css']
 })
 export class DisplayIssuedbooksComponent implements OnInit {
-  issuedBooks:Object;
+  issuedBooks=[];
   constructor(
     private validateService:ValidateService,
     private flashMessage:FlashMessagesService,
