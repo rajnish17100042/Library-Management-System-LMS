@@ -29,7 +29,7 @@ export class DisplayBooksComponent implements OnInit {
         if(data.role==='teacher'){
           this.role=true;
         }
-        this.role=data.role;
+       
         console.log(this.role);
       }else{
         this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
