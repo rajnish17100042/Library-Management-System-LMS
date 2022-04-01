@@ -61,7 +61,7 @@ const routes: Routes = [
    component: DisplayBooksComponent,
    children:[
      {
-       path:'users/:book_id',
+       path:':book_id',
        component:ListIssuedbooksComponent,
       }
    ]

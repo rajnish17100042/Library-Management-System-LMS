@@ -63,7 +63,7 @@ export class DisplayBooksComponent implements OnInit {
 
   viewBook(book_id){
     console.log(book_id);
-    this.router.navigate([`users/${book_id}`],{relativeTo:this.route})
+    this.router.navigate([`${book_id}`],{relativeTo:this.route})
   }
   updateBook(book_id){
    console.log(book_id);
