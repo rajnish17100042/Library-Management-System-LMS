@@ -116,6 +116,10 @@ a{
   text-decoration: none!important;
   color:white;
 }
+
+a:hover{
+  color:white;
+}
 .wrapper{
   display: flex;
   position: relative;
