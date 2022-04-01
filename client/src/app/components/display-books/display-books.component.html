@@ -1,4 +1,4 @@
-<div *ngIf="books">
+<div *ngIf="books && role">
     <div class="wrapper">
         <div class="main_content">
             <!-- displaying Books  -->
@@ -14,6 +14,8 @@
                         <th>Publisher</th>
                         <th>Author</th>
                         <th>Category</th>
+                        <th *ngIf="role==='teacher'">Total Copies</th>
+                        <th *ngIf="role==='teacher'">Available Copies</th>
                         <th>Action</th>
                     </tr>
 
@@ -25,9 +27,16 @@
                         <td>{{book.publisher}} </td>
                         <td>{{book.author}} </td>
                         <td>{{book.bk_category}} </td>
-
+                        <td *ngIf="role==='teacher'">{{book.bk_copies}}</td>
+                        <td *ngIf="role==='teacher'">{{book.available_copies}}</td>
                         <td>
-                            <button class="btn btn-success" (click)="issueBook(book.book_id)">Issue</button>
+                            <div *ngIf="role==='student'">
+                                <button class="btn btn-success" (click)="issueBook(book.book_id)">Issue</button>
+                            </div>
+                            <div *ngIf="role==='teacher'">
+                                <button class="btn btn-success" (click)="viewBook(book.book_id)">View</button>
+                                <button class="btn btn-success" (click)="updateBook(book.book_id)">Update</button>
+                            </div>
 
                         </td>
 

@@ -12,6 +12,7 @@ import {FlashMessagesService} from 'flash-messages-angular';
 })
 export class DisplayBooksComponent implements OnInit {
   books:Object;
+  role:String;
   constructor(
     private validateService:ValidateService,
     private flashMessage:FlashMessagesService,
@@ -24,6 +25,7 @@ export class DisplayBooksComponent implements OnInit {
     this.authService.getBookDetails().subscribe(data=>{
       if(data.success){
         this.books=data.books;
+        this.role=data.role;
       }else{
         this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
          this.router.navigate(['/login']);
@@ -52,6 +54,13 @@ export class DisplayBooksComponent implements OnInit {
       
       );
     }
+  }
+
+  viewBook(book_id){
+    console.log(book_id);
+  }
+  updateBook(book_id){
+   console.log(book_id);
   }
  goBack() {
     this.location.back(); // go back to previous location

@@ -414,7 +414,7 @@ router.get("/getBooks", authenticate, async (req, res) => {
       if (!books) {
         return res.json({ success: false, message: "No Books" });
       } else {
-        return res.json({ success: true, books });
+        return res.json({ success: true, books, role: req.role });
       }
     } catch (err) {
       // throw err;

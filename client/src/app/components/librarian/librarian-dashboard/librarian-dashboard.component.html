@@ -10,6 +10,10 @@
                     <a routerLink="/librarian/add-book"><i class="fas fa-book">Add Book</i></a>
                 </button>
                 <button>
+                    <a [routerLink]="['/librarian/display-books']"><i class="fas  fa-book">Show Books</i>
+                    </a>
+                </button>
+                <button>
                     <a [routerLink]="['/update-librarian-password/' + librarianData.email]"><i
                             class="fas  fa-key">Update
                             Password</i>
