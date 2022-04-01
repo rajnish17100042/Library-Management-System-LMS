@@ -160,6 +160,14 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//check if the user is already logged in
+router.get("/checkAlreadyLogin", authenticate, (req, res) => {
+  if (req.role !== "admin" && req.role !== "doctor" && req.role !== "patient") {
+    return res.json({ success: false, message: "Fill the details to log in" });
+  } else {
+    return res.json({ success: true, role: req.role });
+  }
+});
 // route for forget password ...will check for user existence in database and send
 router.post("/forgetPassword", async (req, res) => {
   // get the request body

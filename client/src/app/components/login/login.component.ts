@@ -21,8 +21,21 @@ export class LoginComponent implements OnInit {
     private router:Router,
     ) { }
 
-  ngOnInit(){
-    //check if already logged In
+ ngOnInit(){
+    this.authService.checkAlreadyLogin().subscribe(data=>{
+      if(data.success){
+        // console.log(data);
+        if(data.role==='admin'){
+           this.router.navigate(['/admin/dashboard']);
+        }else if(data.role==='librarian'){
+         this.router.navigate(['/librarian/dashboard']);
+        }else if(data.role==='student'){
+          this.router.navigate(['/student/dashboard']);
+        }
+
+        
+       }
+    }); 
   }
 
 login(){

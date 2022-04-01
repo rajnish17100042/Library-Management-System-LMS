@@ -68,7 +68,5 @@ export class DisplayBooksComponent implements OnInit {
   updateBook(book_id){
    console.log(book_id);
   }
- goBack() {
-    this.location.back(); // go back to previous location
-  }
+ 
 }
