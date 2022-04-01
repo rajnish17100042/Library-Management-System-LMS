@@ -34,14 +34,12 @@
                                 <button class="btn btn-success" (click)="issueBook(book.book_id)">Issue</button>
                             </div>
                             <div *ngIf="role">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-success btn-sm mr-2" (click)="viewBook(book.book_id)"><i
-                                                class="fa fa-eye"></i></button>
-                                        <button class="btn btn-success btn-sm" (click)="updateBook(book.book_id)"><i
-                                                class="fa fa-edit"></i></button>
-                                    </div>
-                                </div>
+
+                                <button class="btn btn-success btn-sm mr-2" (click)="viewBook(book.book_id)"><i
+                                        class="fa fa-eye"></i></button>
+                                <button class="btn btn-success btn-sm" (click)="updateBook(book.book_id)"><i
+                                        class="fa fa-edit"></i></button>
+
 
                             </div>
 
