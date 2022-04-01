@@ -5,19 +5,19 @@
         <div class="main_content">
             <div class="header">
                 Welcome <strong>{{ adminData.name }} </strong> !! Have a nice day.
-                <button (click)="logout()">Logout</button>
-                <button>
+                <button class="btn btn-info btn-sm" (click)="logout()">Logout</button>
+                <button class="btn btn-info btn-sm">
                     <a routerLink="/admin/user-registration">Registration</a>
                 </button>
-                <button>
+                <button class="btn btn-info btn-sm">
                     <a routerLink="/admin/display-user">Show Users</a>
                 </button>
-                <button>
+                <button class="btn btn-info btn-sm">
                     <a routerLink="/admin/bulk-user-upload">Bulk Upload</a>
                 </button>
 
 
-                <button>
+                <button class="btn btn-info btn-sm">
                     <a routerLink="/upload-image"><i class="fas fa-image">Upload Image</i></a>
                 </button>
             </div>

@@ -5,17 +5,17 @@
         <div class="main_content">
             <div class="header">
                 Welcome <strong>{{studentData.name}} </strong> !! Have a nice day.
-                <button (click)="logout()">Logout</button>
-                <button>
+                <button class="btn btn-info btn-sm" (click)="logout()">Logout</button>
+                <button class="btn btn-info btn-sm">
                     <a [routerLink]="['/student/display-books']"><i class="fas  fa-book">Show Books</i>
                     </a>
                 </button>
-                <button>
+                <button class="btn btn-info btn-sm">
                     <a [routerLink]="['/update-student-password/' + studentData.email]"><i class="fas  fa-key">Update
                             Password</i>
                     </a>
                 </button>
-                <button>
+                <button class="btn btn-info btn-sm">
                     <a routerLink="/upload-image"><i class="fas fa-image">Upload Image</i></a>
                 </button>
             </div>
