@@ -112,7 +112,10 @@ body{
   border-radius: 50%;
 
 }
-
+a{
+  text-decoration: none!important;
+  color:white;
+}
 .wrapper{
   display: flex;
   position: relative;
