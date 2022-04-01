@@ -34,8 +34,9 @@
                                 <button class="btn btn-success" (click)="issueBook(book.book_id)">Issue</button>
                             </div>
                             <div *ngIf="role">
-                                <button class="btn btn-success" (click)="viewBook(book.book_id)">View</button>
-                                <button class="btn btn-success" (click)="updateBook(book.book_id)">Update</button>
+                                <button class="btn btn-success btn-sm" (click)="viewBook(book.book_id)">View</button>
+                                <button class="btn btn-success btn-sm"
+                                    (click)="updateBook(book.book_id)">Update</button>
                             </div>
 
                         </td>
