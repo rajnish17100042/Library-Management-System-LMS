@@ -12,7 +12,7 @@ import {FlashMessagesService} from 'flash-messages-angular';
 })
 export class DisplayBooksComponent implements OnInit {
   books:Object;
-  role:String;
+  role:boolean = false;
   constructor(
     private validateService:ValidateService,
     private flashMessage:FlashMessagesService,
@@ -25,7 +25,12 @@ export class DisplayBooksComponent implements OnInit {
     this.authService.getBookDetails().subscribe(data=>{
       if(data.success){
         this.books=data.books;
+        console.log(data.role);
+        if(data.role==='teacher'){
+          this.role=true;
+        }
         this.role=data.role;
+        console.log(this.role);
       }else{
         this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
          this.router.navigate(['/login']);
