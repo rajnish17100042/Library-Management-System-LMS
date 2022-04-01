@@ -26,7 +26,7 @@ export class DisplayBooksComponent implements OnInit {
       if(data.success){
         this.books=data.books;
         console.log(data.role);
-        if(data.role==='teacher'){
+        if(data.role==='librarian'){
           this.role=true;
         }
        
