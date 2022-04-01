@@ -460,6 +460,13 @@ router.post("/issueBook", authenticate, async (req, res) => {
       if (!is_saved) {
         return res.json({ success: false, message: "Some Error Occured" });
       } else {
+        //reduce the number of books available by 1 in the bookdetails collection
+        const isUpdated = await BookDetail.updateOne(
+          { book_id },
+          { $inc: { available_copies: -1 } }
+        );
+        console.log(isUpdated);
+        // need to implement the Rollback feature in case the bookdetails collection didn't updated
         return res.json({ success: true, message: "Book Issued" });
       }
     }
