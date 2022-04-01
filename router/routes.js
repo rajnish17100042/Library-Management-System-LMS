@@ -162,7 +162,11 @@ router.post("/login", async (req, res) => {
 
 //check if the user is already logged in
 router.get("/checkAlreadyLogin", authenticate, (req, res) => {
-  if (req.role !== "admin" && req.role !== "doctor" && req.role !== "patient") {
+  if (
+    req.role !== "admin" &&
+    req.role !== "librarian" &&
+    req.role !== "student"
+  ) {
     return res.json({ success: false, message: "Fill the details to log in" });
   } else {
     return res.json({ success: true, role: req.role });
