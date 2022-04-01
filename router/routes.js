@@ -421,12 +421,23 @@ router.get("/getBooks", authenticate, async (req, res) => {
     });
   } else {
     try {
-      const books = await BookDetail.find();
-      console.log(books);
-      if (!books) {
-        return res.json({ success: false, message: "No Books" });
-      } else {
-        return res.json({ success: true, books, role: req.role });
+      //if role is student then display all the available books and if role is librarian then display the books only added by the current librarian
+      if (req.role === "student") {
+        const books = await BookDetail.find();
+        console.log(books);
+        if (!books) {
+          return res.json({ success: false, message: "No Books" });
+        } else {
+          return res.json({ success: true, books, role: req.role });
+        }
+      } else if (req.role === "librarian") {
+        const books = await BookDetail.find({ added_by: req.user.email });
+        console.log(books);
+        if (!books) {
+          return res.json({ success: false, message: "No Books" });
+        } else {
+          return res.json({ success: true, books, role: req.role });
+        }
       }
     } catch (err) {
       // throw err;
