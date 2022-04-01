@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import {ValidateService} from '../../services/validate.service';
 import {AuthService} from '../../services/auth.service';
-import {Router} from '@angular/router';
-import {FlashMessagesService} from 'flash-messages-angular';
+import {Router,ActivatedRoute} from '@angular/router';import {FlashMessagesService} from 'flash-messages-angular';
 
 @Component({
   selector: 'app-display-books',
@@ -18,6 +17,7 @@ export class DisplayBooksComponent implements OnInit {
     private flashMessage:FlashMessagesService,
     private authService:AuthService,
     private router:Router,
+    private route: ActivatedRoute,
     private location: Location,
   ) { }
 
@@ -63,6 +63,7 @@ export class DisplayBooksComponent implements OnInit {
 
   viewBook(book_id){
     console.log(book_id);
+    this.router.navigate([`users/${book_id}`],{relativeTo:this.route})
   }
   updateBook(book_id){
    console.log(book_id);

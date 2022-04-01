@@ -5,6 +5,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
+import { ListIssuedbooksComponent } from './components/librarian/list-issuedbooks/list-issuedbooks.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { AddBookComponent } from './components/librarian/add-book/add-book.component';
 import { DisplayBooksComponent } from './components/display-books/display-books.component';
@@ -58,6 +59,12 @@ const routes: Routes = [
    {
    path:'librarian/display-books',
    component: DisplayBooksComponent,
+   children:[
+     {
+       path:'users/:book_id',
+       component:ListIssuedbooksComponent,
+      }
+   ]
   },
 ];
 
@@ -66,4 +73,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent]

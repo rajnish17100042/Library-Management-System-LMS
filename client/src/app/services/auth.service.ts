@@ -116,6 +116,13 @@ export class AuthService {
     return this.http.get<any>('/getIssuedBooks',{headers:headers,})
    } 
 
+   // list issued book users for a particular book
+ listIssuedBooks(book_id){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/listIssuedBooks/'+book_id,{headers:headers,})
+   } 
 //data sending to the backend to delete a user
  deleteUser(role,email){
     let headers=new HttpHeaders();

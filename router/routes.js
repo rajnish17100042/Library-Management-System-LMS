@@ -527,6 +527,39 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
   }
 });
 
+// display all the users who issued a book
+router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({
+      success: false,
+      message: "Not Have Proper Access",
+    });
+  }
+
+  const { book_id } = req.params;
+  console.log(book_id);
+
+  //now  get the list of all users who have issued the book having book_id as the req.params
+
+  try {
+    const issuedBooks = await IssueBook.find({ book_id });
+    console.log(issuedBooks);
+    if (!issuedBooks) {
+      return res.json({
+        success: false,
+        message: "No one have issued this book",
+      });
+    }
+    return res.json({ success: true, issuedBooks });
+  } catch (err) {
+    // throw err;
+    return res.json({
+      success: false,
+      message: "Some Error Occured!",
+    });
+  }
+});
+
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");

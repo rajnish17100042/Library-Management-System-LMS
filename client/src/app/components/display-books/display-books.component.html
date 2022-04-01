@@ -9,6 +9,7 @@
     <div class="info">
         <table id="customers">
             <tr>
+                <th *ngIf="role">Id</th>
                 <th>Title</th>
                 <th>Name</th>
                 <th>Publisher</th>
@@ -22,6 +23,7 @@
 
 
             <tr *ngFor="let book of books">
+                <td *ngIf="role">{{book.booK_id}}</td>
                 <td>{{book.bk_title}} </td>
                 <td>{{book.bk_name}} </td>
                 <td>{{book.publisher}} </td>
@@ -57,6 +59,9 @@
 
         </table>
     </div>
+    <br />
+    <router-outlet></router-outlet>
+
     <br />
     <button class="btn btn-info" (click)="goBack()"><i class="fa fa-backward"> Back </i></button>
 
