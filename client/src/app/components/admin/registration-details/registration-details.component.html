@@ -1,32 +1,32 @@
 <div *ngIf="users.length">
-    <div class="wrapper">
-        <div class="main_content">
-            <!-- displaying student data  -->
-            <div class="header">
-                <h1>Student List</h1>
-            </div>
-
-            <div class="info">
-                <table id="customers">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>State</th>
-
-                        <th>Action</th>
-                    </tr>
 
 
+    <!-- displaying student data  -->
+    <div class="header">
+        <h1>Student List</h1>
+    </div>
 
-                    <tr *ngFor="let student of students">
-                        <td>{{student.name}} </td>
-                        <td>{{student.email}} </td>
-                        <td>{{student.phone}} </td>
-                        <td>{{student.state}} </td>
+    <div class="info">
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>State</th>
 
-                        <td>
-                            <!-- <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit mr-4"></i>
+                <th>Action</th>
+            </tr>
+
+
+
+            <tr *ngFor="let student of students">
+                <td>{{student.name}} </td>
+                <td>{{student.email}} </td>
+                <td>{{student.phone}} </td>
+                <td>{{student.state}} </td>
+
+                <td>
+                    <!-- <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit mr-4"></i>
                             </a>
                             <a [routerLink]="['/update-student-password/' + student.email]"><i
                                     class="fas fa-key mr-4"></i>
@@ -34,110 +34,108 @@
                             <a (click)="deleteUser('student',student.email)"><i class="fas fa-trash"></i></a> -->
 
 
-                            <div class="row">
-                                <div class="col-2">
-                                    <button class="btn btn-success btn-sm"><a
-                                            [routerLink]="['/update-student/' , student.email]"><i
-                                                class="fa fa-edit"></i></a></button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-success btn-sm"><a
-                                            [routerLink]="['/update-student-password/' + student.email]"><i
-                                                class="fa fa-key"></i></a></button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-danger btn-sm"
-                                        (click)="deleteUser('student',student.email)"><i
-                                            class="fa fa-trash"></i></button>
-                                </div>
-                            </div>
-                        </td>
+                    <div class="row">
+                        <div class="col-2">
+                            <button class="btn btn-success btn-sm"><a
+                                    [routerLink]="['/update-student/' , student.email]"><i
+                                        class="fa fa-edit"></i></a></button>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-success btn-sm"><a
+                                    [routerLink]="['/update-student-password/' + student.email]"><i
+                                        class="fa fa-key"></i></a></button>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-danger btn-sm" (click)="deleteUser('student',student.email)"><i
+                                    class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </td>
 
-                    </tr>
+            </tr>
 
-                </table>
-            </div>
+        </table>
+    </div>
 
-            <!-- displaying Librarian  data   -->
-            <div class="header">
-                <h1>Librarian List</h1>
-            </div>
+    <!-- displaying Librarian  data   -->
+    <div class="header">
+        <h1>Librarian List</h1>
+    </div>
 
-            <div class="info">
-                <table id="customers">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>State</th>
+    <div class="info">
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>State</th>
 
-                        <th>Action</th>
-                    </tr>
+                <th>Action</th>
+            </tr>
 
 
-                    <tr *ngFor="let librarian of librarians">
-                        <td>{{librarian.name}} </td>
-                        <td>{{librarian.email}} </td>
-                        <td>{{librarian.phone}} </td>
-                        <td>{{librarian.state}} </td>
+            <tr *ngFor="let librarian of librarians">
+                <td>{{librarian.name}} </td>
+                <td>{{librarian.email}} </td>
+                <td>{{librarian.phone}} </td>
+                <td>{{librarian.state}} </td>
 
-                        <td>
-                            <!-- <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit mr-4"></i>
+                <td>
+                    <!-- <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit mr-4"></i>
                             </a>
                             <a [routerLink]="['/update-librarian-password/' + librarian.email]"><i
                                     class="fas fa-key mr-4"></i>
                             </a>
                             <a (click)="deleteUser('librarian',librarian.email)"><i class="fas fa-trash"></i></a> -->
 
-                            <div class="row">
-                                <div class="col-2">
-                                    <button class="btn btn-success btn-sm"><a
-                                            [routerLink]="['/update-librarian/' , librarian.email]"><i
-                                                class="fa fa-edit"></i></a></button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-success btn-sm"><a
-                                            [routerLink]="['/update-librarian-password/' + librarian.email]"><i
-                                                class="fa fa-key"></i></a></button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-danger btn-sm"
-                                        (click)="deleteUser('librarian',librarian.email)"><i
-                                            class="fa fa-trash"></i></button>
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <button class="btn btn-success btn-sm"><a
+                                    [routerLink]="['/update-librarian/' , librarian.email]"><i
+                                        class="fa fa-edit"></i></a></button>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-success btn-sm"><a
+                                    [routerLink]="['/update-librarian-password/' + librarian.email]"><i
+                                        class="fa fa-key"></i></a></button>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-danger btn-sm" (click)="deleteUser('librarian',librarian.email)"><i
+                                    class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
 
 
-                        </td>
+                </td>
 
-                    </tr>
+            </tr>
 
 
-                </table>
-            </div>
+        </table>
+    </div>
 
-            <!-- displaying Admin data   -->
-            <div class="header">
-                <h1>Admin List</h1>
-            </div>
+    <!-- displaying Admin data   -->
+    <div class="header">
+        <h1>Admin List</h1>
+    </div>
 
-            <div class="info">
-                <table id="customers">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+    <div class="info">
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
 
-                        <th>Action</th>
-                    </tr>
+                <th>Action</th>
+            </tr>
 
-                    <tr *ngFor="let admin of admins">
+            <tr *ngFor="let admin of admins">
 
-                        <td>{{admin.name}}</td>
-                        <td>{{admin.email}} </td>
-                        <td>{{admin.phone}} </td>
-                        <td>
-                            <!-- <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit mr-4"></i>
+                <td>{{admin.name}}</td>
+                <td>{{admin.email}} </td>
+                <td>{{admin.phone}} </td>
+                <td>
+                    <!-- <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit mr-4"></i>
                             </a>
                             <a [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
                                     class="fas fa-key mr-4"></i>
@@ -145,29 +143,27 @@
                             <a (click)="deleteUser('admin',admin.email)"><i class="fas fa-trash"></i></a> -->
 
 
-                            <div class="row">
-                                <div class="col-2">
-                                    <button class="btn btn-success btn-sm"><a
-                                            [routerLink]="['/admin/update-admin/' , admin.email]"><i
-                                                class="fa fa-edit"></i></a></button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-success btn-sm"><a
-                                            [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
-                                                class="fa fa-key"></i></a></button>
-                                </div>
-                                <div class="col-2">
-                                    <button class="btn btn-danger btn-sm" (click)="deleteUser('admin',admin.email)"><i
-                                            class="fa fa-trash"></i></button>
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <button class="btn btn-success btn-sm"><a
+                                    [routerLink]="['/admin/update-admin/' , admin.email]"><i
+                                        class="fa fa-edit"></i></a></button>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-success btn-sm"><a
+                                    [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
+                                        class="fa fa-key"></i></a></button>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-danger btn-sm" (click)="deleteUser('admin',admin.email)"><i
+                                    class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
 
-                        </td>
+                </td>
 
-                    </tr>
+            </tr>
 
-                </table>
-            </div>
-        </div>
+        </table>
     </div>
 </div>
