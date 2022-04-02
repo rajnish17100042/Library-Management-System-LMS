@@ -26,23 +26,15 @@
                 <td>{{student.state}} </td>
 
                 <td>
-                    <!-- <a [routerLink]="['/update-student/' , student.email]"><i class="fas fa-edit mr-4"></i>
-                            </a>
-                            <a [routerLink]="['/update-student-password/' + student.email]"><i
-                                    class="fas fa-key mr-4"></i>
-                            </a>
-                            <a (click)="deleteUser('student',student.email)"><i class="fas fa-trash"></i></a> -->
-
-
                     <div class="row">
                         <div class="col-2">
                             <button class="btn btn-success btn-sm"><a
-                                    [routerLink]="['/update-student/' , student.email]"><i
+                                    [routerLink]="['/update-student/' + student.email +'/'+student]"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
                         <div class="col-2">
                             <button class="btn btn-success btn-sm"><a
-                                    [routerLink]="['/update-student-password/' + student.email]"><i
+                                    [routerLink]="['/update-student-password/' + student.email +'/'+student]"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
                         <div class="col-2">
@@ -81,22 +73,15 @@
                 <td>{{librarian.state}} </td>
 
                 <td>
-                    <!-- <a [routerLink]="['/update-librarian/' + librarian.email]"><i class="fas fa-edit mr-4"></i>
-                            </a>
-                            <a [routerLink]="['/update-librarian-password/' + librarian.email]"><i
-                                    class="fas fa-key mr-4"></i>
-                            </a>
-                            <a (click)="deleteUser('librarian',librarian.email)"><i class="fas fa-trash"></i></a> -->
-
                     <div class="row">
                         <div class="col-2">
                             <button class="btn btn-success btn-sm"><a
-                                    [routerLink]="['/update-librarian/' , librarian.email]"><i
+                                    [routerLink]="['/update-librarian/'+librarian.email +'/'+librarian]"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
                         <div class="col-2">
                             <button class="btn btn-success btn-sm"><a
-                                    [routerLink]="['/update-librarian-password/' + librarian.email]"><i
+                                    [routerLink]="['/update-librarian-password/' + librarian.email+'/'+librarian]"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
                         <div class="col-2">
@@ -135,23 +120,16 @@
                 <td>{{admin.email}} </td>
                 <td>{{admin.phone}} </td>
                 <td>
-                    <!-- <a [routerLink]="['/admin/update-admin/' + admin.email]"><i class="fas fa-edit mr-4"></i>
-                            </a>
-                            <a [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
-                                    class="fas fa-key mr-4"></i>
-                            </a>
-                            <a (click)="deleteUser('admin',admin.email)"><i class="fas fa-trash"></i></a> -->
-
 
                     <div class="row">
                         <div class="col-2">
                             <button class="btn btn-success btn-sm"><a
-                                    [routerLink]="['/admin/update-admin/' , admin.email]"><i
+                                    [routerLink]="['/admin/update-admin/' +admin.email +'/'+admin]"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
                         <div class="col-2">
                             <button class="btn btn-success btn-sm"><a
-                                    [routerLink]="['/admin/update-admin-password/' + admin.email]"><i
+                                    [routerLink]="['/admin/update-admin-password/' + admin.email+'/'+admin]"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
                         <div class="col-2">
