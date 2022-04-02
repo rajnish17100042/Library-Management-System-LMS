@@ -36,7 +36,7 @@ const passwordMailer = require("../mailer/password_mailer.js");
 //common registration route for student,librarian and admin
 router.post("/register", async (req, res) => {
   // calling function for input validation
-  const isInputValidated = validateInput(req);
+  const isInputValidated = validateInput(req.body);
   // console.log(isInputValidated);
 
   if (!isInputValidated) {
@@ -583,6 +583,83 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
   }
 });
 
+//get updation details of a user
+router.get("/updateUser/:email/:role", authenticate, async (req, res) => {
+  if (
+    req.role !== "admin" &&
+    req.role !== "librarian" &&
+    req.role !== "student"
+  ) {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+
+  try {
+    const { email, role } = req.params;
+    // get the user details using email and role
+    const user = await Registration.find({ email, role });
+    console.log(user);
+    if (!user) {
+      return res.json({ success: false, messsage: "User details not found" });
+    } else {
+      return res.json({ success: true, user });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went wrong, please try again",
+    });
+  }
+});
+
+//update user
+router.post("updateUser", authenticate, (req, res) => {
+  if (
+    req.role !== "admin" &&
+    req.role !== "librarian" &&
+    req.role !== "student"
+  ) {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+
+  try {
+    //validate input data
+    console.log(req.body);
+    req.body.role = req.role;
+    const{name,email,phone,address,city,state,pincode}=req.body;
+    // calling function for input validation
+    const isInputValidated = validateInput(req.body);
+    // console.log(isInputValidated);
+
+    if (!isInputValidated) {
+      res.json({ success: false, message: "Please fill the data properly" });
+    }else{
+      //update user detail using email and password  
+        const isUpdated = await Registration.updateOne(
+                { email, role },
+                { $set: {name,email,phone,address,city,state,pincode } }
+              );
+              console.log(isUpdated.modifiedCount);
+              if (!isUpdated.modifiedCount) {
+                return res.json({
+                  success: false,
+                  message: "Some Error Occured!",
+                });
+              } else {
+                return res.json({
+                  success: true,
+                  message: "Details Updated",
+                });
+              }
+    }
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went wrong, please try again",
+    });
+  }
+});
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");

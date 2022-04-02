@@ -139,6 +139,22 @@ export class AuthService {
     return this.http.delete<any>('/deleteUser/'+role+'/'+email,{headers:headers,})
    }
 
+
+   //routes to get the  details from the database to display on the update page
+   getUpdationDetails(email,role){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/updateUser/'+email+'/'+role,{headers:headers,})
+   }
+
+//data sending to the backend for updation of general details excluding password 
+ updateRegistrationDetails(data,role){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('/updateUser',data,{headers:headers,})
+   }
    // logging out the user   
 logout(){
     let headers=new HttpHeaders();

@@ -1,22 +1,16 @@
-const validateInput = (req) => {
-  // console.log(req.roleFromFrontend);
-  // console.log(req.body);
-  // server side validation
-  // destructuring the data
-
-  console.log(req.body);
-  const { name, email, phone, address, city, state, pincode, role } = req.body;
+const validateInput = (data) => {
+  console.log(data);
 
   //   server side validation
   if (
-    !name ||
-    !email ||
-    !phone ||
-    !address ||
-    !city ||
-    !state ||
-    !pincode ||
-    !role
+    !data.name ||
+    !data.email ||
+    !data.phone ||
+    !data.address ||
+    !data.city ||
+    !data.state ||
+    !pdata.incode ||
+    !data.role
   ) {
     return false;
   } else {
@@ -26,29 +20,21 @@ const validateInput = (req) => {
 
 const validateBookDetails = (data) => {
   console.log(data);
-  const {
-    book_id,
-    bk_title,
-    bk_name,
-    publisher,
-    author,
-    bk_copies,
-    bk_category,
-  } = data;
 
   //   server side validation
   if (
-    !book_id ||
-    !bk_title ||
-    !bk_name ||
-    !publisher ||
-    !author ||
-    !bk_copies ||
-    !bk_category
+    !data.book_id ||
+    !data.bk_title ||
+    !data.bk_name ||
+    !data.publisher ||
+    !data.author ||
+    !data.bk_copies ||
+    !data.bk_category
   ) {
     return false;
   } else {
     return true;
   }
 };
+
 module.exports = { validateInput, validateBookDetails };

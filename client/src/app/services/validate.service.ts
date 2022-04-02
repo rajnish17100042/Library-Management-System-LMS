@@ -46,4 +46,12 @@ export class ValidateService {
       return true;
     }
   }
+
+  validateUpdationDetails(data){
+    if(!data.name||!data.email||!data.phone||!data.address||!data.city||!data.state||!data.pincode){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }
