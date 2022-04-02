@@ -153,7 +153,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.post<any>('/updateUser',data,{headers:headers,})
+    return this.http.post<any>('/updateUser/'+role,data,{headers:headers,})
    }
    // logging out the user   
 logout(){

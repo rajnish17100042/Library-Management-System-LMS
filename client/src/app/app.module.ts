@@ -23,11 +23,6 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { DisplayIssuedbooksComponent } from './components/student/display-issuedbooks/display-issuedbooks.component';
 import { ListIssuedbooksComponent } from './components/librarian/list-issuedbooks/list-issuedbooks.component';
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
-import { UpdateAdminPasswordComponent } from './components/admin/update-admin-password/update-admin-password.component';
-import { UpdateLibrarianComponent } from './components/update-librarian/update-librarian.component';
-import { UpdateLibrarianPasswordComponent } from './components/update-librarian-password/update-librarian-password.component';
-import { UpdateStudentComponent } from './components/update-student/update-student.component';
-import { UpdateStudentPasswordComponent } from './components/update-student-password/update-student-password.component';
 
 @NgModule({
   declarations: [
@@ -47,11 +42,7 @@ import { UpdateStudentPasswordComponent } from './components/update-student-pass
     DisplayIssuedbooksComponent,
     ListIssuedbooksComponent,
     UpdateAdminComponent,
-    UpdateAdminPasswordComponent,
-    UpdateLibrarianComponent,
-    UpdateLibrarianPasswordComponent,
-    UpdateStudentComponent,
-    UpdateStudentPasswordComponent
+   
   ],
   imports: [
     BrowserModule,

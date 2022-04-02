@@ -613,7 +613,7 @@ router.get("/updateUser/:email/:role", authenticate, async (req, res) => {
 });
 
 //update user
-router.post("updateUser", authenticate, (req, res) => {
+router.post("/updateUser/:role", authenticate, (req, res) => {
   if (
     req.role !== "admin" &&
     req.role !== "librarian" &&
@@ -625,7 +625,8 @@ router.post("updateUser", authenticate, (req, res) => {
   try {
     //validate input data
     console.log(req.body);
-    req.body.role = req.role;
+    const {role}=req.params;
+    req.body.role = role;
     const{name,email,phone,address,city,state,pincode}=req.body;
     // calling function for input validation
     const isInputValidated = validateInput(req.body);
@@ -636,7 +637,7 @@ router.post("updateUser", authenticate, (req, res) => {
     }else{
       //update user detail using email and password  
         const isUpdated = await Registration.updateOne(
-                { email, role },
+                { email, role:req.role },
                 { $set: {name,email,phone,address,city,state,pincode } }
               );
               console.log(isUpdated.modifiedCount);
