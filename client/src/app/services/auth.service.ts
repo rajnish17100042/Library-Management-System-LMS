@@ -168,7 +168,7 @@ export class AuthService {
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
-    return this.http.post<any>('/updatePassword/'+email+'/'+role,{headers:headers,})
+    return this.http.post<any>('/updatePassword/'+email+'/'+role,password,{headers:headers,})
    }
    // logging out the user   
 logout(){
