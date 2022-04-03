@@ -596,7 +596,7 @@ router.get("/updateUser/:email/:role", authenticate, async (req, res) => {
   try {
     const { email, role } = req.params;
     // get the user details using email and role
-    const user = await Registration.find({ email, role });
+    const user = await Registration.findOne({ email, role });
     console.log(user);
     if (!user) {
       return res.json({ success: false, messsage: "User details not found" });
