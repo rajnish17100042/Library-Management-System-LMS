@@ -75,7 +75,7 @@ const routes: Routes = [
   },
      // update password
   {
-   path:'/update-password/:email/:role',
+   path:'update-password/:email/:role',
    component: UpdatePasswordComponent,
   },
 ];
