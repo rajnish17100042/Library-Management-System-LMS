@@ -681,9 +681,10 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
   const { email, role } = req.params;
-  const { password, newPassword, confirmNewPassword } = req.body;
+  const { currentPassword, newPassword, confirmNewPassword } = req.body;
+  console.log(req.body);
   if (
-    !password ||
+    !currentPassword ||
     !newPassword ||
     !confirmNewPassword ||
     newPassword !== confirmNewPassword
@@ -703,7 +704,7 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
       return res.json({ success: false, message: "User NOT exists" });
     } else {
       //compare the password
-      bcrypt.compare(password, userExist.password, (err, result) => {
+      bcrypt.compare(currentPassword, userExist.password, (err, result) => {
         if (err) {
           // throw err;
           return res.json({
