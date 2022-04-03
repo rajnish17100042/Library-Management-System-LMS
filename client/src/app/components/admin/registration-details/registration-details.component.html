@@ -12,8 +12,10 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Address</th>
+                <th>City</th>
                 <th>State</th>
-
+                <th>Pincode</th>
                 <th>Action</th>
             </tr>
 
@@ -23,7 +25,10 @@
                 <td>{{student.name}} </td>
                 <td>{{student.email}} </td>
                 <td>{{student.phone}} </td>
+                <td>{{student.address}} </td>
+                <td>{{student.city}} </td>
                 <td>{{student.state}} </td>
+                <td>{{student.pincode}} </td>
 
                 <td>
                     <div class="row">
@@ -60,8 +65,10 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Address</th>
+                <th>City</th>
                 <th>State</th>
-
+                <th>Pincode</th>
                 <th>Action</th>
             </tr>
 
@@ -70,7 +77,10 @@
                 <td>{{librarian.name}} </td>
                 <td>{{librarian.email}} </td>
                 <td>{{librarian.phone}} </td>
+                <td>{{librarian.address}} </td>
+                <td>{{librarian.city}} </td>
                 <td>{{librarian.state}} </td>
+                <td>{{librarian.pincode}} </td>
 
                 <td>
                     <div class="row">
@@ -110,15 +120,22 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Pincode</th>
                 <th>Action</th>
             </tr>
 
             <tr *ngFor="let admin of admins">
 
-                <td>{{admin.name}}</td>
+                <td>{{admin.name}} </td>
                 <td>{{admin.email}} </td>
                 <td>{{admin.phone}} </td>
+                <td>{{admin.address}} </td>
+                <td>{{admin.city}} </td>
+                <td>{{admin.state}} </td>
+                <td>{{admin.pincode}} </td>
                 <td>
 
                     <div class="row">
