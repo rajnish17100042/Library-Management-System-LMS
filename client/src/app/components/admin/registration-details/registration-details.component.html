@@ -32,17 +32,17 @@
 
                 <td>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/admin/update-user/' + student.email +'/student']"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/update-user-password/' + student.email +'/student']"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-danger btn-sm" (click)="deleteUser('student',student.email)"><i
                                     class="fa fa-trash"></i></button>
                         </div>
@@ -84,17 +84,17 @@
 
                 <td>
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/admin/update-user/'+librarian.email +'/librarian']"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/update-user-password/' + librarian.email+'/librarian']"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-danger btn-sm" (click)="deleteUser('librarian',librarian.email)"><i
                                     class="fa fa-trash"></i></button>
                         </div>
@@ -139,17 +139,17 @@
                 <td>
 
                     <div class="row">
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/admin/update-user/' +admin.email +'/admin']"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/admin/update-user-password/' + admin.email+'/admin']"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                             <button class="btn btn-danger btn-sm" (click)="deleteUser('admin',admin.email)"><i
                                     class="fa fa-trash"></i></button>
                         </div>
