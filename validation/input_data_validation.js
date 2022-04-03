@@ -9,7 +9,7 @@ const validateInput = (data) => {
     !data.address ||
     !data.city ||
     !data.state ||
-    !pdata.incode ||
+    !data.pincode ||
     !data.role
   ) {
     return false;
