@@ -5,6 +5,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
 import { ListIssuedbooksComponent } from './components/librarian/list-issuedbooks/list-issuedbooks.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
@@ -67,10 +68,15 @@ const routes: Routes = [
       }
    ]
   },
-     // display books
+     // update user details
   {
    path:'admin/update-user/:email/:role',
    component: UpdateAdminComponent,
+  },
+     // update password
+  {
+   path:'/update-password/:email/:role',
+   component: UpdatePasswordComponent,
   },
 ];
 
@@ -79,4 +85,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent,UpdateAdminComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent,UpdateAdminComponent,UpdatePasswordComponent]

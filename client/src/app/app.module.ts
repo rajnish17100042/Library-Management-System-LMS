@@ -23,6 +23,7 @@ import { DisplayBooksComponent } from './components/display-books/display-books.
 import { DisplayIssuedbooksComponent } from './components/student/display-issuedbooks/display-issuedbooks.component';
 import { ListIssuedbooksComponent } from './components/librarian/list-issuedbooks/list-issuedbooks.component';
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UpdateAdminComponent } from './components/admin/update-admin/update-adm
     DisplayIssuedbooksComponent,
     ListIssuedbooksComponent,
     UpdateAdminComponent,
+    UpdatePasswordComponent,
    
   ],
   imports: [

@@ -54,4 +54,12 @@ export class ValidateService {
       return true;
     }
   }
+
+   validateUpdatePassword(data){
+    if(!data.currentPassword||!data.newPassword||!data.confirmNewPassword||(data.newPassword!==data.confirmNewPassword)){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }

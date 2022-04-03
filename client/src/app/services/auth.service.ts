@@ -155,6 +155,21 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.post<any>('/updateUser/'+role,data,{headers:headers,})
    }
+
+  //rprotectind update password route 
+   protectUpdatePasswordRoute(){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/updatePassword/',{headers:headers,})
+   }
+ //rprotectind update password route 
+   updatePassword(password,email,role){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('/updatePassword/',+email+'/'+role,{headers:headers,})
+   }
    // logging out the user   
 logout(){
     let headers=new HttpHeaders();

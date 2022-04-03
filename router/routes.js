@@ -657,6 +657,103 @@ router.post("/updateUser/:role", authenticate, async (req, res) => {
     });
   }
 });
+
+//route to protect update password page
+router.get("/updatePassword", authenticate, (req, res) => {
+  if (
+    req.role !== "admin" &&
+    req.role !== "librarian" &&
+    req.role !== "student"
+  ) {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  } else {
+    return res.json({ success: true, message: "Loading...." });
+  }
+});
+
+// route to update password using email and role
+router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
+  if (
+    req.role !== "admin" &&
+    req.role !== "librarian" &&
+    req.role !== "student"
+  ) {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  const { email, role } = req.params;
+  const { password, newPassword, confirmNewPassword } = req.body;
+  if (
+    !password ||
+    !newPassword ||
+    !confirmNewPassword ||
+    newPassword !== confirmNewPassword
+  ) {
+    return res.json({
+      success: false,
+      message: "Please fill the data properly",
+    });
+  }
+
+  try {
+    //  check if user with email and role exist
+    const userExist = await Registration.findOne({ email, role });
+    console.log(userExist);
+    // now compare the current password with password saved in the database
+    if (!userExist) {
+      return res.json({ success: false, message: "User NOT exists" });
+    } else {
+      //compare the password
+      bcrypt.compare(password, userExist.password, (err, result) => {
+        if (err) {
+          // throw err;
+          return res.json({
+            success: false,
+            message: "OPPS !! Something went wrong",
+          });
+        } else if (!result) {
+          return res.json({
+            success: false,
+            message: "OPPS !! Something went wrong",
+          });
+        }
+
+        //now hash the new password and update in database
+        bcrypt.hash(newPassword, saltRounds, async (err, hash) => {
+          if (err) {
+            return res.json({
+              success: false,
+              message: "OPPS!! Something went wrong",
+            });
+          } else {
+            const isUpdated = await Registration.updateOne(
+              { email, role },
+              { $set: { password: hash } }
+            );
+            console.log(isUpdated.modifiedCount);
+            if (!isUpdated.modifiedCount) {
+              return res.json({
+                success: false,
+                message: "Some Error Occured!",
+              });
+            } else {
+              return res.json({
+                success: true,
+                message: "Password Changed Successfully",
+              });
+            }
+          }
+        });
+      });
+    }
+  } catch (err) {
+    // throw err
+    return res.json({
+      success: false,
+      message: "Something went wrong, Please try again",
+    });
+  }
+});
+
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");
