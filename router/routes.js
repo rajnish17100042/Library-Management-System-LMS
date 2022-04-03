@@ -633,7 +633,7 @@ router.post("/updateUser/:role", authenticate, async (req, res) => {
     } else {
       //update user detail using email and password
       const isUpdated = await Registration.updateOne(
-        { email, role: req.role },
+        { email, role },
         { $set: { name, email, phone, address, city, state, pincode } }
       );
       console.log(isUpdated.modifiedCount);
