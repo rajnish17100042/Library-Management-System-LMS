@@ -613,7 +613,7 @@ router.get("/updateUser/:email/:role", authenticate, async (req, res) => {
 });
 
 //update user
-router.post("/updateUser/:role", authenticate, (req, res) => {
+router.post("/updateUser/:role", authenticate, async (req, res) => {
   if (
     req.role !== "admin" &&
     req.role !== "librarian" &&
@@ -625,33 +625,33 @@ router.post("/updateUser/:role", authenticate, (req, res) => {
   try {
     //validate input data
     console.log(req.body);
-    const {role}=req.params;
+    const { role } = req.params;
     req.body.role = role;
-    const{name,email,phone,address,city,state,pincode}=req.body;
+    const { name, email, phone, address, city, state, pincode } = req.body;
     // calling function for input validation
     const isInputValidated = validateInput(req.body);
     // console.log(isInputValidated);
 
     if (!isInputValidated) {
       res.json({ success: false, message: "Please fill the data properly" });
-    }else{
-      //update user detail using email and password  
-        const isUpdated = await Registration.updateOne(
-                { email, role:req.role },
-                { $set: {name,email,phone,address,city,state,pincode } }
-              );
-              console.log(isUpdated.modifiedCount);
-              if (!isUpdated.modifiedCount) {
-                return res.json({
-                  success: false,
-                  message: "Some Error Occured!",
-                });
-              } else {
-                return res.json({
-                  success: true,
-                  message: "Details Updated",
-                });
-              }
+    } else {
+      //update user detail using email and password
+      const isUpdated = await Registration.updateOne(
+        { email, role: req.role },
+        { $set: { name, email, phone, address, city, state, pincode } }
+      );
+      console.log(isUpdated.modifiedCount);
+      if (!isUpdated.modifiedCount) {
+        return res.json({
+          success: false,
+          message: "Some Error Occured!",
+        });
+      } else {
+        return res.json({
+          success: true,
+          message: "Details Updated",
+        });
+      }
     }
   } catch (err) {
     console.log(err);
