@@ -69,7 +69,7 @@ const routes: Routes = [
   },
      // display books
   {
-   path:'admin/update-admin/:email/:role',
+   path:'admin/update-user/:email/:role',
    component: UpdateAdminComponent,
   },
 ];

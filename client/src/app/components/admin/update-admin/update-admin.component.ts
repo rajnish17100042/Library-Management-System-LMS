@@ -55,7 +55,7 @@ export class UpdateAdminComponent implements OnInit {
   }
 
    updateAdmin(){
-    const role='admin';
+    
     
     //required all the fields
     if(!this.validateService.validateUpdationDetails(this.admin)){
@@ -72,7 +72,7 @@ export class UpdateAdminComponent implements OnInit {
     }
 
     //send admin data to the server
-    this.authService.updateRegistrationDetails(this.admin,role).subscribe(
+    this.authService.updateRegistrationDetails(this.admin,this.role).subscribe(
       data => {
        if(data.success){
           this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});

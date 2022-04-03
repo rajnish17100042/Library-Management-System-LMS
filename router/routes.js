@@ -614,11 +614,7 @@ router.get("/updateUser/:email/:role", authenticate, async (req, res) => {
 
 //update user
 router.post("/updateUser/:role", authenticate, async (req, res) => {
-  if (
-    req.role !== "admin" &&
-    req.role !== "librarian" &&
-    req.role !== "student"
-  ) {
+  if (req.role !== "admin") {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
 
