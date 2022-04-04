@@ -126,12 +126,12 @@ router.post("/login", async (req, res) => {
           // throw err;
           return res.json({
             success: false,
-            message: "OPPS !! Something went wrong",
+            message: "Invalid credential",
           });
         } else if (!result) {
           return res.json({
             success: false,
-            message: "OPPS !! Something went wrong",
+            message: "Invalid credential",
           });
         }
 
