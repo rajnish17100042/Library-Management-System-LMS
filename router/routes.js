@@ -466,7 +466,7 @@ router.post("/updateBook/:book_id", authenticate, async (req, res) => {
   if (req.role !== "librarian") {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
-
+  const { book_id } = req.params;
   // server side validation
   req.body.book_id = book_id;
   const is_validated = validateBookDetails(req.body);
