@@ -80,7 +80,8 @@ router.post("/register", async (req, res) => {
         //send password on mail
         passwordMailer(
           req.body.email,
-          req.body.role.req.body.name,
+          req.body.role,
+          req.body.name,
           random_password
         );
         // console.log("After MongoDb save ");
