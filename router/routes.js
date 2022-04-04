@@ -483,14 +483,14 @@ router.post("/updateBook/:book_id", authenticate, async (req, res) => {
     if (!book) {
       return res.json({ success: false, message: "Book Details Not Found " });
     }
-    const updated_available_copies = req.body.bk_copies - book.bk_copies;
+    const increased_copies = req.body.bk_copies - book.bk_copies;
+    const available_copies = book.available_copies + increased_copies;
     // both increase and decrease will be handled
-    console.log(updated_available_copies);
+    console.log(increased_copies);
     //update the book details
     const is_updated = await BookDetail.updateOne(
       { book_id },
-      { $inc: { available_copies: updated_available_copies } },
-      { $set: { bk_copies: req.body.bk_copies } }
+      { $set: { bk_copies: req.body.bk_copies, available_copies } }
     );
 
     if (!is_updated) {
