@@ -2,7 +2,7 @@ var nodemailer = require("nodemailer");
 const user = process.env.YAHOO_USER_ID;
 const password = process.env.YAHOO_PASSWORD;
 // console.log(user, password);
-const passwordMailer = async (email, name, random_password) => {
+const passwordMailer = async (email, role, name, random_password) => {
   var transporter = nodemailer.createTransport({
     host: "smtp.bizmail.yahoo.com",
     port: 587,
@@ -20,7 +20,7 @@ const passwordMailer = async (email, name, random_password) => {
     from: "rajnishpatel203@yahoo.com",
     to: email,
     subject: "Login credentials ",
-    html: `Welcome <strong>${name}! </strong> you are registerd! <p>Your one time password is <strong>${random_password}</strong> </p> <p> Please login <a href="https://library-management-system-lms1.herokuapp.com//login">here</a> and change your password immediately.</p>`,
+    html: `Welcome <strong>${name}! </strong> you are registerd as <strong>${role}</strong>. <p>Your one time password is <strong>${random_password}</strong> </p> <p> Please login <a href="https://library-management-system-lms1.herokuapp.com//login">here</a> and change your password immediately.</p>`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
