@@ -497,7 +497,7 @@ router.post("/updateBook/:book_id", authenticate, async (req, res) => {
       return res.json({ success: false, messsage: "Some Error Occured" });
     } else {
       console.log(is_updated);
-      return res.json({ success: true, meggase: "Book Details Updated!!" });
+      return res.json({ success: true, message: "Book Details Updated!!" });
     }
   } catch (err) {
     // throw err
