@@ -539,6 +539,12 @@ router.post("/issueBook", authenticate, async (req, res) => {
     console.log(is_issued);
     if (is_issued) {
       return res.json({ success: false, message: "Already Issued this book" });
+    }
+
+    // now check the availability of the book
+    const book = await BookDetail.findOne({ book_id });
+    if (!book.available_copies) {
+      return res.json({ success: false, message: "Book Not Available" });
     } else {
       const issueBook = new IssueBook(issueData);
       const is_saved = await issueBook.save();
