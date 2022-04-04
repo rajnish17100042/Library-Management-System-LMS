@@ -13,7 +13,7 @@
 
             <label for="role"><i class="fa fa-universal-access"></i><strong>Role</strong></label>
             <select [(ngModel)]="role" name="role" required>
-                <option [ngValue="null" [disabled]="true">Please Select Role</option>
+                <option [ngValue]="null" [disabled]="true">Please Select Role</option>
                 <option value="student">Student</option>
                 <option value="librarian">Librarian</option>
                 <option value="admin">Admin</option>
