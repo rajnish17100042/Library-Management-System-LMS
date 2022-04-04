@@ -47,6 +47,18 @@ export class ValidateService {
     }
   }
 
+   validateUpdateBookDetails(data){
+
+      if(!data.bk_title||!data.bk_name||!data.publisher||!data.author||!data.bk_copies||!data.bk_category){
+            
+            return false;
+          }
+   else{ 
+      // console.log("else part");
+      return true;
+    }
+  }
+
   validateUpdationDetails(data){
     if(!data.name||!data.email||!data.phone||!data.address||!data.city||!data.state||!data.pincode){
       return false;

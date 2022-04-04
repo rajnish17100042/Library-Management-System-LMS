@@ -446,6 +446,64 @@ router.get("/getBooks", authenticate, async (req, res) => {
   }
 });
 
+// get a single book details
+router.get("/getBook/:book_id", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  const { book_id } = req.params;
+  const book = await BookDetail.findOne({ book_id: book_id });
+  if (!book) {
+    return res.json({ success: false, message: "Book Details Not Found " });
+  } else {
+    console.log(book);
+    return res.json({ success: true, book });
+  }
+});
+
+// update a book
+router.post("/updateBook/:book_id", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+
+  // server side validation
+  req.body.book_id = book_id;
+  const is_validated = validateBookDetails(req.body);
+  if (!is_validated) {
+    return res.json({
+      success: false,
+      message: "Please fill the data properly!",
+    });
+  }
+
+  try {
+    //we have to update total book copies and the available number of copies
+    const book = await BookDetail.findOne({ book_id });
+    if (!book) {
+      return res.json({ success: false, message: "Book Details Not Found " });
+    }
+    const updated_available_copies = req.body.bk_copies - book.bk_copies;
+    // both increase and decrease will be handled
+    console.log(updated_available_copies);
+    //update the book details
+    const is_updated = await BookDetail.updateOne(
+      { book_id },
+      { $inc: { available_copies: updated_available_copies } },
+      { $set: { bk_copies: req.body.bk_copies } }
+    );
+
+    if (!is_updated) {
+      return res.json({ success: false, messsage: "Some Error Occured" });
+    } else {
+      console.log(is_updated);
+      return res.json({ success: true, meggase: "Book Details Updated!!" });
+    }
+  } catch (err) {
+    // throw err
+    return res.json({ success: false, message: "Some Error Occured " });
+  }
+});
 // issue a book
 router.post("/issueBook", authenticate, async (req, res) => {
   if (req.role !== "student") {

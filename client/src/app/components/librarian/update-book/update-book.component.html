@@ -1,0 +1,36 @@
+<div *ngIf="is_render">
+    <div *ngIf="book">
+        <form (submit)="updateBook()">
+            <div class="container">
+                <h1>Update Book</h1>
+                <p>Please fill in this form </p>
+                <hr />
+
+
+                <input type="text" [(ngModel)]="book.bk_title" name="book.bk_title" placeholder="Enter Title" required
+                    [disabled]="true" />
+                <input type="text" [(ngModel)]="book.bk_name" name="book.bk_name" placeholder="Enter Book Name"
+                    required />
+                <input type="text" [(ngModel)]="book.publisher" name="book.publisher" placeholder="Enter Publisher"
+                    required [disabled]="true" />
+                <input type="text" [(ngModel)]="book.author" name="book.author" placeholder="Enter Author Name" required
+                    [disabled]="true" />
+                <input type="number" [(ngModel)]="book.bk_copies" name="book.bk_copies"
+                    placeholder="Enter Total Number of Books" required />
+                <label for="bk_category"><i class="fa fa-book"></i><strong>Category</strong></label>
+                <select [(ngModel)]="book.bk_category" name="bk_category" required>
+                    <option value="" disabled selected>Select Category</option>
+                    <option value="education">Education</option>
+                    <option value="music">Music</option>
+                    <option value="sport">Sport</option>
+                </select>
+
+                <hr />
+
+                <button type="submit" class="registerbtn">
+                    Update
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

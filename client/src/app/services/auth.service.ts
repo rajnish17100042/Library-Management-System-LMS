@@ -100,12 +100,28 @@ export class AuthService {
     return this.http.post<any>('/addBook',data,{headers:headers,})
    } 
 
+ //update book
+ updateBook(data,book_id){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('/updateBook/'+book_id,data,{headers:headers,})
+   } 
+
  //get book details
  getBookDetails(){
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
     headers.append( "credentials", "include");
     return this.http.get<any>('/getBooks',{headers:headers,})
+   } 
+
+    //get single  book details
+ getSingleBookDetails(book_id){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/getBook/'+book_id,{headers:headers,})
    } 
 
  //issue a book

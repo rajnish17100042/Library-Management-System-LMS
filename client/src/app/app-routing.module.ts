@@ -7,6 +7,7 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
+import { UpdateBookComponent } from './components/librarian/update-book/update-book.component';
 import { ListIssuedbooksComponent } from './components/librarian/list-issuedbooks/list-issuedbooks.component';
 import { StudentDashboardComponent } from './components/student/student-dashboard/student-dashboard.component';
 import { AddBookComponent } from './components/librarian/add-book/add-book.component';
@@ -78,6 +79,11 @@ const routes: Routes = [
    path:'update-password/:email/:role',
    component: UpdatePasswordComponent,
   },
+     // update book details
+  {
+   path:'librarian/update-book/:book_id',
+   component: UpdateBookComponent,
+  },
 ];
 
 @NgModule({
@@ -85,4 +91,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent,UpdateAdminComponent,UpdatePasswordComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent,UpdateAdminComponent,UpdatePasswordComponent,UpdateBookComponent]
