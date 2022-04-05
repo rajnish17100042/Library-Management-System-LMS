@@ -145,17 +145,17 @@
                 <td>
 
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <button class="btn btn-success btn-sm mr-1"><a
                                     [routerLink]="['/admin/update-user/' +admin.email +'/admin']"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/update-password/' + admin.email+'/admin']"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <button class="btn btn-danger btn-sm" (click)="deleteUser('admin',admin.email)"><i
                                     class="fa fa-trash"></i></button>
                         </div>
