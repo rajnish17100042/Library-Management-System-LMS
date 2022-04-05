@@ -15,6 +15,9 @@ body {
   box-sizing: border-box;
 }
 
+button{
+  margin-right: 3px;
+}
 /* Add padding to containers */
 /* .container {
   margin:0;
