@@ -154,6 +154,7 @@ router.post("/login", async (req, res) => {
           console.log(token);
           res.json({
             success: true,
+            message: "Logged In Successfully",
             access_token: token,
             role,
           });
