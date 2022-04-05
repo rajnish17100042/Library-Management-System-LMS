@@ -34,17 +34,17 @@
 
                 <td>
                     <div class="row">
-                        <div class="col-4">
-                            <button class="btn btn-success btn-sm mr-1"><a
+                        <div class="col-6">
+                            <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/admin/update-user/' + student.email +'/student']"><i
                                         class="fa fa-edit"></i></a></button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <button class="btn btn-success btn-sm"><a
                                     [routerLink]="['/update-password/' + student.email +'/student']"><i
                                         class="fa fa-key"></i></a></button>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <button class="btn btn-danger btn-sm" (click)="deleteUser('student',student.email)"><i
                                     class="fa fa-trash"></i></button>
                         </div>
