@@ -44,7 +44,7 @@ export class AdminDashboardComponent implements OnInit {
           this.router.navigate(['/login']);
        }
        else{
-            this.flashMessage.show("Something went wrong",{cssClass:'alert-danger',timeout:3000});
+            this.flashMessage.show("Something went wrong, Please try again",{cssClass:'alert-danger',timeout:3000});
 
        }
       }

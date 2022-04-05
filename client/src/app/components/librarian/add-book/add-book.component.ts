@@ -69,7 +69,7 @@ export class AddBookComponent implements OnInit {
           this.router.navigate(['/librarian/dashboard']);
        }
        else{
-            this.flashMessage.show("Something went wrong",{cssClass:'alert-danger',timeout:3000});
+            this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
 
        }
       }

@@ -65,31 +65,20 @@ login(){
   this.authService.login(user).subscribe(data=>{
       if(data.success){
         // console.log(data.token);
-        this.flashMessage.show("Successfully Logged In",{cssClass:'alert-success',timeout:3000});
+        this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});
         // console.log("logged In");
 
         // console.log(data.role);
         if(data.role==='admin'){
         this.router.navigate(['/admin/dashboard']);
-        // this.flashMessage.show("Admin Login",{cssClass:'alert-success',timeout:3000});
-        // console.log("Admin");
-
-
-        }
+       }
         else if(data.role==='librarian'){
-        //  this.router.navigate(['/librarian/dashboard']);
-        // this.flashMessage.show("Librarian Login",{cssClass:'alert-success',timeout:3000});
-        // console.log("Librarian");
+       
          this.router.navigate(['/librarian/dashboard']);
 
 
         }else if(data.role==='student'){
-        //  this.router.navigate(['/student/dashboard']);
-        // this.flashMessage.show("Student Login",{cssClass:'alert-success',timeout:3000});
-        // console.log("Student");
-        this.router.navigate(['/student/dashboard']);
-
-
+         this.router.navigate(['/student/dashboard']);
         }
         
       }else{

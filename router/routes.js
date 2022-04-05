@@ -52,7 +52,7 @@ router.post("/register", async (req, res) => {
       if (userExist) {
         return res.json({
           success: false,
-          message: "user is already registered",
+          message: "User is Already Registered",
         });
       }
       //generate random password and email this to user
@@ -73,7 +73,7 @@ router.post("/register", async (req, res) => {
       if (!is_saved) {
         return res.json({
           success: false,
-          message: "Something went Wrong",
+          message: "Something went Wrong,Please Try Again",
         });
       } else {
         // console.log("sending password in mail");
@@ -87,14 +87,14 @@ router.post("/register", async (req, res) => {
         // console.log("After MongoDb save ");
         return res.json({
           success: true,
-          message: "User registedred Successfully! Please Check your mail",
+          message: "User registedred Successfully!",
         });
       }
     } catch (err) {
       // console.log(err);
       return res.json({
         success: false,
-        message: "Something went Wrong",
+        message: "Something went Wrong,Please Try Again",
       });
     }
   }
@@ -118,7 +118,7 @@ router.post("/login", async (req, res) => {
     const userExist = await Registration.findOne({ email, role });
     // console.log(userExist);
     if (!userExist) {
-      return res.json({ success: false, message: "User NOT exists" });
+      return res.json({ success: false, message: "User NOT Exists" });
     } else {
       //compare the password
       bcrypt.compare(password, userExist.password, (err, result) => {
@@ -126,7 +126,7 @@ router.post("/login", async (req, res) => {
           // throw err;
           return res.json({
             success: false,
-            message: "Invalid credential",
+            message: "Something went Wrong,Please Try Again",
           });
         } else if (!result) {
           return res.json({
@@ -143,7 +143,7 @@ router.post("/login", async (req, res) => {
             // throw err;
             return res.json({
               success: false,
-              message: "OPPS !! Something went wrong",
+              message: "Something went Wrong,Please Try Again",
             });
           }
 
@@ -161,7 +161,10 @@ router.post("/login", async (req, res) => {
       });
     }
   } catch (err) {
-    return res.json({ success: false, message: "OPPS!! something went wrong" });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 
@@ -172,7 +175,7 @@ router.get("/checkAlreadyLogin", authenticate, (req, res) => {
     req.role !== "librarian" &&
     req.role !== "student"
   ) {
-    return res.json({ success: false, message: "Fill the details to log in" });
+    return res.json({ success: false, message: "Please Enter the details" });
   } else {
     return res.json({ success: true, role: req.role });
   }
@@ -217,11 +220,14 @@ router.post("/forgetPassword", async (req, res) => {
 
       return res.json({
         success: true,
-        message: "Check your mail for password reset link",
+        message: "Please Check your mail for password reset link",
       });
     }
   } catch (err) {
-    return res.json({ success: false, message: "OPPS!! something went wrong" });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 
@@ -248,7 +254,10 @@ router.get("/resetPassword/:role/:email/:token", async (req, res) => {
     }
   } catch (err) {
     // throw err;
-    return res.json({ success: false, message: "Some Error Occured!" });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 
@@ -277,7 +286,7 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
         if (!payload) {
           return res.json({
             success: false,
-            message: "OPPS!! Something went wrong",
+            message: "Something went Wrong,Please Try Again",
           });
         } else {
           // hash the password and update the database query
@@ -285,7 +294,7 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
             if (err) {
               return res.json({
                 success: false,
-                message: "OPPS!! Something went wrong",
+                message: "Something went Wrong,Please Try Again",
               });
             } else {
               const isUpdated = await Registration.updateOne(
@@ -296,7 +305,7 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
               if (!isUpdated.modifiedCount) {
                 return res.json({
                   success: false,
-                  message: "Some Error Occured!",
+                  message: "Something went Wrong,Please Try Again",
                 });
               } else {
                 return res.json({
@@ -310,7 +319,10 @@ router.post("/resetPassword/:role/:email/:token", async (req, res) => {
       }
     } catch (err) {
       // throw err;
-      return res.json({ success: false, message: "Some Error Occured!" });
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
     }
   }
 });
@@ -322,7 +334,7 @@ router.get("/adminDashboard", authenticate, (req, res) => {
   if (req.role !== "admin") {
     return res.json({
       success: false,
-      message: "Please Login",
+      message: "Please Login First",
     });
   } else {
     // console.log("admin data is:");
@@ -380,7 +392,10 @@ router.get("/registrationDetails", authenticate, async (req, res) => {
       }
     } catch (err) {
       // throw err;
-      return res.json({ success: false, message: "Some Error Occured!" });
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
     }
   }
 });
@@ -406,14 +421,20 @@ router.post("/addBook", authenticate, async (req, res) => {
       const is_saved = await bookDetail.save();
       console.log(is_saved);
       if (!is_saved) {
-        return res.json({ success: false, message: "Some Error Occured" });
+        return res.json({
+          success: false,
+          message: "Something went Wrong,Please Try Again",
+        });
       } else {
         return res.json({ success: true, message: "Book Details Added" });
       }
     }
   } catch (err) {
     console.log(err);
-    return res.json({ success: false, message: "Some Error Occured!" });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 
@@ -446,7 +467,10 @@ router.get("/getBooks", authenticate, async (req, res) => {
       }
     } catch (err) {
       // throw err;
-      return res.json({ success: false, message: "Some Error Occured!" });
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
     }
   }
 });
@@ -499,14 +523,20 @@ router.post("/updateBook/:book_id", authenticate, async (req, res) => {
     );
 
     if (!is_updated) {
-      return res.json({ success: false, messsage: "Some Error Occured" });
+      return res.json({
+        success: false,
+        messsage: "Something went Wrong,Please Try Again",
+      });
     } else {
       console.log(is_updated);
       return res.json({ success: true, message: "Book Details Updated!!" });
     }
   } catch (err) {
     // throw err
-    return res.json({ success: false, message: "Some Error Occured " });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 // issue a book
@@ -550,7 +580,10 @@ router.post("/issueBook", authenticate, async (req, res) => {
       const is_saved = await issueBook.save();
       console.log(is_saved);
       if (!is_saved) {
-        return res.json({ success: false, message: "Some Error Occured" });
+        return res.json({
+          success: false,
+          message: "Something went Wrong,Please Try Again",
+        });
       } else {
         //reduce the number of books available by 1 in the bookdetails collection
         const isUpdated = await BookDetail.updateOne(
@@ -564,7 +597,10 @@ router.post("/issueBook", authenticate, async (req, res) => {
     }
   } catch (err) {
     // throw err;
-    return res.json({ success: false, message: "Some Error Occured!" });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 
@@ -615,7 +651,10 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
     return res.json({ success: true, books: combined_book_data });
   } catch (err) {
     // throw err
-    return res.json({ success: false, message: "Please Try Again" });
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
   }
 });
 
@@ -647,7 +686,7 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
     // throw err;
     return res.json({
       success: false,
-      message: "Some Error Occured!",
+      message: "Something went Wrong,Please Try Again",
     });
   }
 });
@@ -709,7 +748,7 @@ router.post("/updateUser/:role", authenticate, async (req, res) => {
       if (!isUpdated.modifiedCount) {
         return res.json({
           success: false,
-          message: "Some Error Occured!",
+          message: "Something went Wrong,Please Try Again",
         });
       } else {
         return res.json({
@@ -778,12 +817,12 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
           // throw err;
           return res.json({
             success: false,
-            message: "OPPS !! Something went wrong",
+            message: "Something went Wrong,Please Try Again",
           });
         } else if (!result) {
           return res.json({
             success: false,
-            message: "OPPS !! Something went wrong",
+            message: "Something went Wrong,Please Try Again",
           });
         }
 
@@ -792,7 +831,7 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
           if (err) {
             return res.json({
               success: false,
-              message: "OPPS!! Something went wrong",
+              message: "Something went Wrong,Please Try Again",
             });
           } else {
             const isUpdated = await Registration.updateOne(
@@ -803,7 +842,7 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
             if (!isUpdated.modifiedCount) {
               return res.json({
                 success: false,
-                message: "Some Error Occured!",
+                message: "Something went Wrong,Please Try Again",
               });
             } else {
               return res.json({
