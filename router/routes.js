@@ -996,7 +996,7 @@ router.post("/payFine", authenticate, async (req, res) => {
     }
     //reduce the fine
     const is_finereduced = await Registration.updateOne(
-      { email, role },
+      { email },
       { $inc: { fine: -amount } }
     );
     if (!is_finereduced) {
