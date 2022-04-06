@@ -1016,7 +1016,7 @@ router.post("/payFine", authenticate, async (req, res) => {
     };
 
     const finetransaction = new FineTransaction(transaction_data);
-    const is_saved = await register.save();
+    const is_saved = await finetransaction.save();
     if (!is_saved) {
       return res.json({
         success: false,
