@@ -718,6 +718,7 @@ router.get("/getIssuedBook/:book_id/:email", async (req, res) => {
     return res.json({
       success: false,
       message: "Server Error",
+      err,
     });
   }
 });
