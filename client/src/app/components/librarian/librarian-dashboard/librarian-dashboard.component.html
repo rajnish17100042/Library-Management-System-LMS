@@ -13,6 +13,7 @@
                     <a [routerLink]="['/librarian/display-books']"><i class="fas  fa-book"> Show Books</i>
                     </a>
                 </button>
+                <button class="btn btn-dark btn-sm" (click)="returnBook()">Return Book</button>
                 <button class="btn btn-dark btn-sm">
                     <a [routerLink]="['/update-password/' + librarianData.email +'/librarian']"><i class="fas  fa-key">
                             Update

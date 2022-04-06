@@ -116,7 +116,7 @@ export class AuthService {
     return this.http.get<any>('/getBooks',{headers:headers,})
    } 
 
-    //get single  book details
+    //get single  book details for updation 
  getSingleBookDetails(book_id){
     let headers=new HttpHeaders();
     headers.append('Content-Type','application/json');
@@ -147,6 +147,15 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.get<any>('/listIssuedBooks/'+book_id,{headers:headers,})
    } 
+
+     // display a single book on librarian dashboard after the return button is clicked
+ getIssuedBook(book_id,email){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/getIssuedBook/'+book_id+'/'+email,{headers:headers,})
+   } 
+
 //data sending to the backend to delete a user
  deleteUser(role,email){
     let headers=new HttpHeaders();

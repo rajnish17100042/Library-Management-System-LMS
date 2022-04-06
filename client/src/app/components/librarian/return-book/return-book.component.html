@@ -1,0 +1,32 @@
+<div *ngIf="is_render">
+    <div *ngIf="issuedBook">
+
+        <div class="main_content">
+            <!-- displaying issued book data  -->
+            <div class="header">
+                <h1>Book</h1>
+            </div>
+
+            <div class="info">
+                <table id="customers">
+                    <tr>
+                        <th>Id</th>
+                        <th>Issued By</th>
+                        <th>Issue Date</th>
+                        <th>Return Date</th>
+                        <th>Fine</th>
+                    </tr>
+
+                    <tr>
+                        <td>{{issuedBook.book_id}} </td>
+                        <td>{{issuedBook.issue_by}} </td>
+                        <td>{{issuedBook.issue_date}} </td>
+                        <td>{{issuedBook.return_date}} </td>
+                        <td>Rs. {{issuedBook.fine}} </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+    </div>

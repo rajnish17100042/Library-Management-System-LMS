@@ -34,6 +34,21 @@ export class LibrarianDashboardComponent implements OnInit {
     });  
   
   }
+
+
+  returnBook(){
+   const book_id=window.prompt("Please Enter Book Id");
+   const email=window.prompt("Please Enter User Email Id");
+   console.log(book_id,email);
+   if(!book_id||!email){
+     return 0;
+   }
+
+   this.router.navigate([`/librarian/return-book/${book_id}/${email}`]);
+
+  }
+
+
   logout(){
      //go to backend logout route
     this.authService.logout().subscribe(

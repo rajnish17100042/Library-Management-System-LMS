@@ -26,6 +26,7 @@ const resetPasswordLinkMailer = require("../mailer/reset_password_link_mailer.js
 const authenticate = require("../middleware/authentication");
 const password_generator = require("../password_generator/password_generator");
 const passwordMailer = require("../mailer/password_mailer.js");
+const calculate_fine = require("../fine/single_book_fine.js");
 
 // const authenticate = require("../middleware/authentication");
 
@@ -476,7 +477,7 @@ router.get("/getBooks", authenticate, async (req, res) => {
   }
 });
 
-// get a single book details
+// get route to update a book
 router.get("/getBook/:book_id", authenticate, async (req, res) => {
   if (req.role !== "librarian") {
     return res.json({ success: false, message: "Not Have Proper Access" });
@@ -659,7 +660,7 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
   }
 });
 
-// display all the users who issued a book
+// display all the users who issued a book .... librarian dashboard
 router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
   if (req.role !== "librarian") {
     return res.json({
@@ -685,6 +686,34 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
     return res.json({ success: true, issuedBooks });
   } catch (err) {
     // throw err;
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
+});
+
+//get route for the details of single book for return purpose
+router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  const { book_id, email } = req.params;
+  try {
+    const issuedBook = await IssueBook.findOne({ book_id, issue_by: email });
+    if (!issuedBook) {
+      return res.json({ success: false, message: "Book details not found" });
+    }
+    console.log(issuedBook);
+    //calculate fine and update the fine property then send the data to frontend
+    const fine = calculate_fine(issuedBook);
+    console.log(fine);
+
+    issuedBook.fine = fine;
+
+    return res.json({ success: true, issuedBook });
+  } catch (err) {
+    // throw err
     return res.json({
       success: false,
       message: "Something went Wrong,Please Try Again",
@@ -862,6 +891,38 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
       message: "Something went wrong, Please try again",
     });
   }
+});
+
+//fine calculation
+router.get("/calculateFine", async (req, res) => {
+  const { issue_by, book_id, current_date } = req.body;
+  const issue_book = await IssueBook.findOne({ issue_by, book_id });
+  console.log(issue_book);
+  const return_date = issue_book.return_date;
+  const date_array = return_date.split("/");
+  const date_array2 = current_date.split("/");
+  const current_date_day =
+    new Date(date_array2[2], date_array2[0], date_array2[1]).getTime() /
+    (1000 * 60 * 60 * 24);
+  const return_date_day =
+    new Date(date_array[2], date_array[0], date_array[1]).getTime() /
+    (1000 * 60 * 60 * 24);
+  const late = current_date_day - return_date_day;
+  console.log("number of late days : ", late);
+  console.log("fine for this book is : $ ", late * 10);
+  // console.log(date_array);
+  // const day3 =
+  //   new Date(date_array[2], date_array[0], date_array[1]).getTime() /
+  //   (1000 * 60 * 60 * 24);
+  //new Date(yyyy,mm,dd);
+  // const day1 = new Date(2022, 4, 5).getTime() / (1000 * 60 * 60 * 24);
+  // const day2 = new Date(2022, 4, 5).getTime() / (1000 * 60 * 60 * 24);
+  // console.log(day3 - day1);
+
+  // console.log(new Date().toDateString());
+  // const current_date_sec = new Date().getTime() / 1000;
+  // console.log(current_date_sec);
+  res.json({ late });
 });
 
 //route for Logout
