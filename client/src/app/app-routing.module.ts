@@ -7,6 +7,7 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard/admi
 import { UpdateAdminComponent } from './components/admin/update-admin/update-admin.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { LibrarianDashboardComponent } from './components/librarian/librarian-dashboard/librarian-dashboard.component';
+import { PayFineComponent } from './components/librarian/pay-fine/pay-fine.component';
 import { UpdateBookComponent } from './components/librarian/update-book/update-book.component';
 import { ReturnBookComponent } from './components/librarian/return-book/return-book.component';
 import { ListIssuedbooksComponent } from './components/librarian/list-issuedbooks/list-issuedbooks.component';
@@ -90,7 +91,13 @@ const routes: Routes = [
   {
     path:'librarian/return-book/:book_id/:email',
     component:ReturnBookComponent,
-  }
+  },
+
+   //pay fine
+  {
+    path:'librarian/pay-fine/:email',
+    component:PayFineComponent,
+  },
 ];
 
 @NgModule({
@@ -98,4 +105,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent,UpdateAdminComponent,UpdatePasswordComponent,UpdateBookComponent,ReturnBookComponent]
+export const RoutingComponents=[LoginComponent,ForgetPasswordComponent,ResetPasswordComponent, AdminDashboardComponent,UserRegistrationComponent,LibrarianDashboardComponent,StudentDashboardComponent,DisplayBooksComponent,ListIssuedbooksComponent,UpdateAdminComponent,UpdatePasswordComponent,UpdateBookComponent,ReturnBookComponent,PayFineComponent]
