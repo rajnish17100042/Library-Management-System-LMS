@@ -567,6 +567,7 @@ router.post("/issueBook", authenticate, async (req, res) => {
     const is_issued = await IssueBook.findOne({
       book_id,
       issue_by: issueData.issue_by,
+      is_return: false,
     });
     console.log(is_issued);
     if (is_issued) {
