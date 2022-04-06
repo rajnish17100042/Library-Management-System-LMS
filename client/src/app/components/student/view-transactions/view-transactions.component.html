@@ -1,0 +1,29 @@
+<div *ngIf="transactions.length">
+
+    <div class="main_content">
+        <!-- displaying transaction for fine payment  -->
+        <div class="header">
+            <h1>Transactions</h1>
+        </div>
+
+        <div class="info">
+            <table id="customers">
+                <tr>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Purpose</th>
+
+                </tr>
+
+                <tr *ngFor="let book of issuedBooks">
+                    <td>Rs {{transaction.amount}} </td>
+                    <td>{{transaction.transaction_date}} </td>
+                    <td>{{transaction.purpose}} </td>
+
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</div>

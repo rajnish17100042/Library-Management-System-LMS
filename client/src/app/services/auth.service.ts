@@ -219,6 +219,14 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.post<any>('/payFine',data,{headers:headers,})
    }
+
+    //get transaction details of an user  
+   getTransactions(){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/getTransactions',{headers:headers,})
+   }
    // logging out the user   
 logout(){
     let headers=new HttpHeaders();

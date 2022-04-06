@@ -1034,6 +1034,25 @@ router.post("/payFine", authenticate, async (req, res) => {
   }
 });
 
+//get transaction details of an user
+router.get("/getTransactions", authenticate, async (req, res) => {
+  if (req.role !== "student") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  try {
+    const transactions = await FineTransaction.find({
+      user_id: req.user.email,
+    });
+    return res.json({ success: true, transactions });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
+});
+
 //fine calculation
 router.get("/calculateFine", async (req, res) => {
   const { issue_by, book_id, current_date } = req.body;
