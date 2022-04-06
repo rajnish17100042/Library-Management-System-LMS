@@ -614,7 +614,10 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
   try {
     const user = req.user.email;
     // get all the books issued by the user from issuebooks mongodb collection
-    const issuedBooks = await IssueBook.find({ issue_by: user });
+    const issuedBooks = await IssueBook.find({
+      issue_by: user,
+      is_return: false,
+    });
     console.log(issuedBooks);
     //now get all the book ids
     const book_ids = [];
@@ -675,7 +678,7 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
   //now  get the list of all users who have issued the book having book_id as the req.params
 
   try {
-    const issuedBooks = await IssueBook.find({ book_id });
+    const issuedBooks = await IssueBook.find({ book_id, is_return: false });
     console.log(issuedBooks);
     if (!issuedBooks) {
       return res.json({
@@ -759,6 +762,15 @@ router.post("/returnBook", authenticate, async (req, res) => {
         message: "Something went Wrong,Please Try Again",
       });
     }
+
+    //if some error occured in the middle the we will have to rollback
+    //how to rollback
+
+    //update available_copies in bookdetails collection by 1;
+    const update_available_copies = await BookDetail.updateOne(
+      { book_id },
+      { $inc: { available_copies: 1 } }
+    );
     return res.json({ success: true, message: "Book Returned Successfully" });
   } catch (err) {
     console.log(err);
