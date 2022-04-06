@@ -713,7 +713,7 @@ router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
 
     return res.json({ success: true, issuedBook });
   } catch (err) {
-    // throw err
+    console.log(err);
     return res.json({
       success: false,
       message: "Something went Wrong,Please Try Again",
