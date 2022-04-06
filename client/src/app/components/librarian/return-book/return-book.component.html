@@ -15,6 +15,7 @@
                         <th>Issue Date</th>
                         <th>Return Date</th>
                         <th>Fine</th>
+                        <th>Action</th>
                     </tr>
 
                     <tr>
@@ -25,7 +26,8 @@
                         <td class="text-danger">
                             Rs. {{issuedBook.fine}}
                         </td>
-
+                        <button class="btn btn-success"
+                            (click)="returnBook(issuedBook.book_id,issuedBook.issue_by)">Return</button>
                     </tr>
 
                 </table>

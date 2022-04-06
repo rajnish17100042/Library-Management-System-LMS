@@ -701,7 +701,11 @@ router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
   }
   const { book_id, email } = req.params;
   try {
-    const issuedBook = await IssueBook.findOne({ book_id, issue_by: email });
+    const issuedBook = await IssueBook.findOne({
+      book_id,
+      issue_by: email,
+      is_return: false,
+    });
     if (!issuedBook) {
       return res.json({ success: false, message: "Book details not found" });
     }
