@@ -17,7 +17,7 @@ const calculate_fine = (data) => {
     new Date(date_array[2], date_array[0], date_array[1]).getTime() /
     (1000 * 60 * 60 * 24);
 
-  const late = Math.floor(current_date_day - return_date_day);
+  const late = current_date_day - return_date_day;
   console.log(late);
   if (late > 0) {
     console.log("number of late days : ", late);

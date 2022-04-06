@@ -695,6 +695,7 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
 
 //get route for the details of single book for return purpose
 router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
+  console.log("entering fine route");
   if (req.role !== "librarian") {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
@@ -716,7 +717,7 @@ router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
     console.log(err);
     return res.json({
       success: false,
-      message: "Something went Wrong,Please Try Again",
+      message: "Server Error",
     });
   }
 });
