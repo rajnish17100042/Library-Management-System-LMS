@@ -1,4 +1,5 @@
 const calculate_fine = (data) => {
+  console.log("inside fine calculation function");
   const fine = 0;
   const current_date = new Date();
   console.log(current_date);
@@ -15,7 +16,8 @@ const calculate_fine = (data) => {
     new Date(date_array[2], date_array[0], date_array[1]).getTime() /
     (1000 * 60 * 60 * 24);
 
-  const late = current_date_day - return_date_day;
+  const late = Math.floor(current_date_day - return_date_day);
+  console.log(late);
   if (late > 0) {
     console.log("number of late days : ", late);
     console.log("fine for this book is : $ ", late * 10);
