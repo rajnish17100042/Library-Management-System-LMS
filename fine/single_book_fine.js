@@ -1,6 +1,6 @@
 const calculate_fine = (data) => {
   console.log("inside fine calculation function");
-  const fine = 0;
+  let fine = 0;
   const current_date = new Date().toLocaleDateString();
   console.log(current_date);
 

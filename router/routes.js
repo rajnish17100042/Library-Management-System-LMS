@@ -694,11 +694,11 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
 });
 
 //get route for the details of single book for return purpose
-router.get("/getIssuedBook/:book_id/:email", async (req, res) => {
+router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
   console.log("entering fine route");
-  // if (req.role !== "librarian") {
-  //   return res.json({ success: false, message: "Not Have Proper Access" });
-  // }
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
   const { book_id, email } = req.params;
   try {
     const issuedBook = await IssueBook.findOne({ book_id, issue_by: email });
@@ -718,7 +718,6 @@ router.get("/getIssuedBook/:book_id/:email", async (req, res) => {
     return res.json({
       success: false,
       message: "Server Error",
-      err,
     });
   }
 });
