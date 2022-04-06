@@ -38,6 +38,11 @@ const registrationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  fine: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   password: {
     type: String,
     required: true,

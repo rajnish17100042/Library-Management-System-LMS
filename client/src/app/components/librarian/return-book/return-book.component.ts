@@ -34,4 +34,26 @@ export class ReturnBookComponent implements OnInit {
     }); 
   }
 
+  returnBook(book_id,email,fine){
+    console.log(book_id,email,fine);
+     let finalreturn = confirm("want to return this book ??");
+
+    if (finalreturn == true) {
+      
+      this.authService.returnBook({book_id,email,fine}).subscribe(
+        data => {
+        if(data.success){
+            this.flashMessage.show(data.message,{cssClass:'alert-success',timeout:3000});
+            this.router.navigate(['/librarian/dashboard']);
+        }
+        else{
+              this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
+
+        }
+        }
+      
+      );
+    }
+  }
+
 }

@@ -14,9 +14,9 @@ const saltRounds = 12;
 const db = require("../db/conn");
 
 const Registration = require("../model/registrationSchema");
-
 const BookDetail = require("../model/bookDetailsSchema");
 const IssueBook = require("../model/issueBookSchema");
+const Fine = require("../model/fineSchema");
 
 const {
   validateInput,
@@ -721,7 +721,50 @@ router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
     console.log(err);
     return res.json({
       success: false,
-      message: "Server Error",
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
+});
+
+//returning a book
+router.post("/returnBook", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  const { book_id, email, fine } = req.body;
+
+  try {
+    if (!book_id || !email || !fine) {
+      return res.json({ success: false, message: "Insufficient Data" });
+    }
+    //  in issuebook collection make is_return to true
+    const is_updated_book = await IssueBook.updateOne(
+      { book_id, issue_book: email },
+      { $set: { is_return: true } }
+    );
+    if (!is_updated_book) {
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
+    }
+    //update fine in fine collection
+    const is_updated_fine = await Registration.updateOne(
+      { email },
+      { $inc: { fine } }
+    );
+    if (!is_updated_fine) {
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
+    }
+    return res.json({ success: true, message: "Book Returned Successfully" });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
     });
   }
 });
