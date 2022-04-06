@@ -16,7 +16,7 @@ const db = require("../db/conn");
 const Registration = require("../model/registrationSchema");
 const BookDetail = require("../model/bookDetailsSchema");
 const IssueBook = require("../model/issueBookSchema");
-const Fine = require("../model/fineSchema");
+const FineTransaction = require("../model/fineTransactionSchema");
 
 const {
   validateInput,
@@ -954,6 +954,40 @@ router.post("/updatePassword/:email/:role", authenticate, async (req, res) => {
   }
 });
 
+// route to get fine details
+router.get("/getFineDetails/:email", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  const { email } = req.params;
+  try {
+    const fineData = await Registration.findOne(
+      { email },
+      { email: 1, fine: 1 }
+    );
+    console.log(fineData);
+    if (!fineData) {
+      return res.json({ success: false, message: "Fine Details Not Found" });
+    }
+    return res.json({ success: true, fineData });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
+});
+
+//route to pay fine on behalf os student
+router.post("/payFine", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+
+  const { email, amount, purpose } = req.body;
+  console.log(email, amount, purpose);
+});
 //fine calculation
 router.get("/calculateFine", async (req, res) => {
   const { issue_by, book_id, current_date } = req.body;

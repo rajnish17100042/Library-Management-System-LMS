@@ -35,7 +35,7 @@ export class LibrarianDashboardComponent implements OnInit {
   
   }
 
-
+//function to return a book 
   returnBook(){
    const book_id=window.prompt("Please Enter Book Id");
    const email=window.prompt("Please Enter User Email Id");
@@ -48,6 +48,17 @@ export class LibrarianDashboardComponent implements OnInit {
 
   }
 
+//function to pay fine  
+payFine(){
+   
+   const email=window.prompt("Please Enter User Email Id");
+   console.log(email);
+   if(!email){
+     return 0;
+   }
+
+   this.router.navigate([`/librarian/pay-fine/${email}`]);
+}
 
   logout(){
      //go to backend logout route

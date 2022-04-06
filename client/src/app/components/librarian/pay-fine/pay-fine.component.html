@@ -1,0 +1,28 @@
+<div *ngIf="is_render && fineData">
+    <form (submit)="payFine()">
+        <div class="container">
+            <h1>Pay Fine</h1>
+            <p>Total fine for <strong> {{fineData.email|uppercase}}</strong> is: <strong class="text-danger">Rs
+                    {{fineData.fine}}</strong></p>
+            <hr />
+
+            <label for="email"><i class="fa fa-envelope"></i> <strong>User Id</strong></label>
+            <input type="email" [(ngModel)]="fineData.email" [disabled]="true" name="fineData.email"
+                placeholder="Enter Your Email" required />
+            <label for="amount"><i class="fa fa-cost"></i><strong>Amount </strong></label>
+
+            <input type="number" [(ngModel)]="fineAmount" name="fineAmount" placeholder="Enter Amount to be paid"
+                required />
+
+            <label for="purpose"><strong>Purpose</strong></label>
+            <input type="textarea" [(ngModel)]="finePurpose" name="finePurpose" placeholder="Enter Purpose For the fine"
+                required />
+            <hr />
+
+            <button type="submit" class="loginbtn">
+                Pay
+            </button>
+
+        </div>
+    </form>
+</div>

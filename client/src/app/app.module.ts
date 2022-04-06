@@ -26,6 +26,7 @@ import { UpdateAdminComponent } from './components/admin/update-admin/update-adm
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { UpdateBookComponent } from './components/librarian/update-book/update-book.component';
 import { ReturnBookComponent } from './components/librarian/return-book/return-book.component';
+import { PayFineComponent } from './components/librarian/pay-fine/pay-fine.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ReturnBookComponent } from './components/librarian/return-book/return-b
     UpdatePasswordComponent,
     UpdateBookComponent,
     ReturnBookComponent,
+    PayFineComponent,
    
   ],
   imports: [

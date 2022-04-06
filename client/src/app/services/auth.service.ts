@@ -203,6 +203,22 @@ export class AuthService {
     headers.append( "credentials", "include");
     return this.http.post<any>('/updatePassword/'+email+'/'+role,password,{headers:headers,})
    }
+
+   //get fine details to display on librarian dashboard during fine payment 
+   getFineDetails(email){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/getFineDetails/'+email,{headers:headers,})
+   }
+
+    //pay fine  
+   payFine(data){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.post<any>('/payFine',data,{headers:headers,})
+   }
    // logging out the user   
 logout(){
     let headers=new HttpHeaders();
