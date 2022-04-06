@@ -11,5 +11,5 @@ const fineSchema = new mongoose.Schema({
   },
 });
 
-const fine = mongoose.model("fine", issueBookSchema);
+const fine = mongoose.model("fine", fineSchema);
 module.exports = fine;
