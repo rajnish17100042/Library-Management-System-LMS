@@ -985,9 +985,55 @@ router.post("/payFine", authenticate, async (req, res) => {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
 
-  const { email, amount, purpose } = req.body;
-  console.log(email, amount, purpose);
+  try {
+    const { email, amount, purpose } = req.body;
+    console.log(email, amount, purpose);
+    if (!email || !amount || !purpose) {
+      return res.json({
+        success: false,
+        message: "Please Fill All the Details",
+      });
+    }
+    //reduce the fine
+    const is_finereduced = await Registration.updateOne(
+      { email, role },
+      { $inc: { fine: -amount } }
+    );
+    if (!is_finereduced) {
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
+    }
+
+    //now add the transaction
+    const current_date = new Date().toLocaleDateString();
+    const transaction_data = {
+      user_id: email,
+      amount,
+      transaction_date: current_date,
+      purpose,
+    };
+
+    const finetransaction = new FineTransaction(transaction_data);
+    const is_saved = await register.save();
+    if (!is_saved) {
+      return res.json({
+        success: false,
+        message: "Something went Wrong,Please Try Again",
+      });
+    }
+    console.log(is_saved);
+    return res.json({ success: true, message: "Fine Paid Successfully" });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
 });
+
 //fine calculation
 router.get("/calculateFine", async (req, res) => {
   const { issue_by, book_id, current_date } = req.body;
