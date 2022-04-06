@@ -1,15 +1,16 @@
 const calculate_fine = (data) => {
   console.log("inside fine calculation function");
   const fine = 0;
-  const current_date = new Date();
+  const current_date = new Date().toLocaleDateString();
   console.log(current_date);
-  const current_date_day = current_date.getTime() / (1000 * 60 * 60 * 24);
+
   const return_date = data.return_date;
   const date_array = return_date.split("/");
+  const date_array2 = current_date.split("/");
 
-  //   const current_date_day =
-  //     new Date(date_array2[2], date_array2[0], date_array2[1]).getTime() /
-  //     (1000 * 60 * 60 * 24);
+  const current_date_day =
+    new Date(date_array2[2], date_array2[0], date_array2[1]).getTime() /
+    (1000 * 60 * 60 * 24);
 
   //new Date(yyyy,mm,dd)
   const return_date_day =
