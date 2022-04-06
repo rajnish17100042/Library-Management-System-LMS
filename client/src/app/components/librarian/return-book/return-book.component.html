@@ -26,8 +26,10 @@
                         <td class="text-danger">
                             Rs. {{issuedBook.fine}}
                         </td>
-                        <button class="btn btn-success"
-                            (click)="returnBook(issuedBook.book_id,issuedBook.issue_by)">Return</button>
+                        <td>
+                            <button class="btn btn-success"
+                                (click)="returnBook(issuedBook.book_id,issuedBook.issue_by)">Return</button>
+                        </td>
                     </tr>
 
                 </table>
