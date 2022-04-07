@@ -71,6 +71,18 @@ export class UpdateAdminComponent implements OnInit {
       return false;
     }
 
+     
+     //validate mobile number   
+    if(!this.validateService.validateMobileNumber(this.admin.phone)){
+     this.flashMessage.show("Please enter the correct mobile number",{cssClass:'alert-danger',timeout:3000});
+      return false;
+    }
+
+ //validate pincode  
+    if(!this.validateService.validatePincode(this.admin.pincode)){
+     this.flashMessage.show("Please enter the correct Pincode",{cssClass:'alert-danger',timeout:3000});
+      return false;
+    }
     //send admin data to the server
     this.authService.updateRegistrationDetails(this.admin,this.role).subscribe(
       data => {

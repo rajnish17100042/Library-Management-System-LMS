@@ -22,7 +22,21 @@ export class ValidateService {
      const re =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
      return re.test(email);
   }
+   validateMobileNumber(phone){
+    if(phone.match(/^(\+\d{1,3}[- ]?)?\d{10}$/) && ! (phone.match(/0{5,}/)) ){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
+ validatePincode(pincode){
+    if(pincode.match(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/)){
+      return true;
+    }else{
+      return false;
+    }
+  }
    validateRegistration(dataToSend){
 
       if(!dataToSend.name||!dataToSend.email||!dataToSend.phone||!dataToSend.address||!dataToSend.city||!dataToSend.state||!dataToSend.pincode||!dataToSend.role){

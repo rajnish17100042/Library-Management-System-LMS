@@ -67,8 +67,20 @@ export class UserRegistrationComponent implements OnInit {
     }
     //validate email
     if(!this.validateService.validateEmail(dataToSend.email)){
-      // window.alert("Please enter the correct email");
+      
       this.flashMessage.show("Please enter the correct email",{cssClass:'alert-danger',timeout:3000});
+      return false;
+    }
+    
+     //validate mobile number   
+    if(!this.validateService.validateMobileNumber(dataToSend.phone)){
+     this.flashMessage.show("Please enter the correct mobile number",{cssClass:'alert-danger',timeout:3000});
+      return false;
+    }
+
+    //validate pincode  
+    if(!this.validateService.validatePincode(dataToSend.pincode)){
+     this.flashMessage.show("Please enter the correct Pincode",{cssClass:'alert-danger',timeout:3000});
       return false;
     }
 

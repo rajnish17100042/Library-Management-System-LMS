@@ -1053,37 +1053,37 @@ router.get("/getTransactions", authenticate, async (req, res) => {
   }
 });
 
-//fine calculation
-router.get("/calculateFine", async (req, res) => {
-  const { issue_by, book_id, current_date } = req.body;
-  const issue_book = await IssueBook.findOne({ issue_by, book_id });
-  console.log(issue_book);
-  const return_date = issue_book.return_date;
-  const date_array = return_date.split("/");
-  const date_array2 = current_date.split("/");
-  const current_date_day =
-    new Date(date_array2[2], date_array2[0], date_array2[1]).getTime() /
-    (1000 * 60 * 60 * 24);
-  const return_date_day =
-    new Date(date_array[2], date_array[0], date_array[1]).getTime() /
-    (1000 * 60 * 60 * 24);
-  const late = current_date_day - return_date_day;
-  console.log("number of late days : ", late);
-  console.log("fine for this book is : $ ", late * 10);
-  // console.log(date_array);
-  // const day3 =
-  //   new Date(date_array[2], date_array[0], date_array[1]).getTime() /
-  //   (1000 * 60 * 60 * 24);
-  //new Date(yyyy,mm,dd);
-  // const day1 = new Date(2022, 4, 5).getTime() / (1000 * 60 * 60 * 24);
-  // const day2 = new Date(2022, 4, 5).getTime() / (1000 * 60 * 60 * 24);
-  // console.log(day3 - day1);
+// //fine calculation
+// router.get("/calculateFine", async (req, res) => {
+//   const { issue_by, book_id, current_date } = req.body;
+//   const issue_book = await IssueBook.findOne({ issue_by, book_id });
+//   console.log(issue_book);
+//   const return_date = issue_book.return_date;
+//   const date_array = return_date.split("/");
+//   const date_array2 = current_date.split("/");
+//   const current_date_day =
+//     new Date(date_array2[2], date_array2[0], date_array2[1]).getTime() /
+//     (1000 * 60 * 60 * 24);
+//   const return_date_day =
+//     new Date(date_array[2], date_array[0], date_array[1]).getTime() /
+//     (1000 * 60 * 60 * 24);
+//   const late = current_date_day - return_date_day;
+//   console.log("number of late days : ", late);
+//   console.log("fine for this book is : $ ", late * 10);
+//   // console.log(date_array);
+//   // const day3 =
+//   //   new Date(date_array[2], date_array[0], date_array[1]).getTime() /
+//   //   (1000 * 60 * 60 * 24);
+//   //new Date(yyyy,mm,dd);
+//   // const day1 = new Date(2022, 4, 5).getTime() / (1000 * 60 * 60 * 24);
+//   // const day2 = new Date(2022, 4, 5).getTime() / (1000 * 60 * 60 * 24);
+//   // console.log(day3 - day1);
 
-  // console.log(new Date().toDateString());
-  // const current_date_sec = new Date().getTime() / 1000;
-  // console.log(current_date_sec);
-  res.json({ late });
-});
+//   // console.log(new Date().toDateString());
+//   // const current_date_sec = new Date().getTime() / 1000;
+//   // console.log(current_date_sec);
+//   res.json({ late });
+// });
 
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
