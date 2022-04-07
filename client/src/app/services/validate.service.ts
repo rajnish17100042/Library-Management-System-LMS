@@ -18,24 +18,22 @@ export class ValidateService {
       return true;
     }
   }
+
   validateEmail(email){
      const re =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
      return re.test(email);
   }
+
    validateMobileNumber(phone){
-    if(phone.match(/^(\+\d{1,3}[- ]?)?\d{10}$/) && ! (phone.match(/0{5,}/)) ){
-      return true;
-    }else{
-      return false;
-    }
+    const re=/^(\+\d{1,3}[- ]?)?\d{10}$/;
+    return re.test(phone);
+  
   }
 
  validatePincode(pincode){
-    if(pincode.match(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/)){
-      return true;
-    }else{
-      return false;
-    }
+    const re=/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+    return re.test(pincode);
+   
   }
    validateRegistration(dataToSend){
 
