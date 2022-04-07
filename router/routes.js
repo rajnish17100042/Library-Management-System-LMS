@@ -660,6 +660,8 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
         combined_book_data[i].return_date
       );
     }
+
+    console.log(combined_book_data);
     return res.json({ success: true, books: combined_book_data });
   } catch (err) {
     // throw err
@@ -693,6 +695,11 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
         message: "No one have issued this book",
       });
     }
+
+    for (let i = 0; i < issuedBooks.length; i++) {
+      issuedBooks[i].fine = calculate_fine(issuedBooks[i].return_date);
+    }
+    console.log(issuedBooks);
     return res.json({ success: true, issuedBooks });
   } catch (err) {
     // throw err;
