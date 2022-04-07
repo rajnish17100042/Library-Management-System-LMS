@@ -1,5 +1,5 @@
 const calculate_fine = (return_date) => {
-  console.log("inside fine calculation function");
+  // console.log("inside fine calculation function");
   let fine = 0;
   const current_date = new Date().toLocaleDateString();
   console.log(current_date);
@@ -21,7 +21,7 @@ const calculate_fine = (return_date) => {
   if (late > 0) {
     console.log("number of late days : ", late);
     console.log("fine for this book is : $ ", late * 10);
-    fine = late * 10;
+    fine = (late + 1) * 10;
   }
 
   return fine;
