@@ -654,6 +654,12 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
     //time complexity is O(n*n)
     // use binary search to get nlogn time complexity
     console.log(combined_book_data);
+    //now calculate fine for each book
+    for (let i = 0; i < combined_book_data.length; i++) {
+      combined_book_data[i].fine = calculate_fine(
+        combined_book_data[i].return_date
+      );
+    }
     return res.json({ success: true, books: combined_book_data });
   } catch (err) {
     // throw err
@@ -715,7 +721,7 @@ router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
     }
     console.log(issuedBook);
     //calculate fine and update the fine property then send the data to frontend
-    const fine = calculate_fine(issuedBook);
+    const fine = calculate_fine(issuedBook.return_date);
     console.log(fine);
 
     issuedBook.fine = fine;

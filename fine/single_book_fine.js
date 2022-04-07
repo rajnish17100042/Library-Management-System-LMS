@@ -1,10 +1,9 @@
-const calculate_fine = (data) => {
+const calculate_fine = (return_date) => {
   console.log("inside fine calculation function");
   let fine = 0;
   const current_date = new Date().toLocaleDateString();
   console.log(current_date);
 
-  const return_date = data.return_date;
   const date_array = return_date.split("/");
   const date_array2 = current_date.split("/");
 

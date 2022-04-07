@@ -74,7 +74,7 @@ export class UpdateAdminComponent implements OnInit {
      
      //validate mobile number   
     if(!this.validateService.validateMobileNumber(this.admin.phone)){
-     this.flashMessage.show("Please enter the correct mobile number",{cssClass:'alert-danger',timeout:3000});
+     this.flashMessage.show("Please Enter Correct Mobile Number",{cssClass:'alert-danger',timeout:3000});
       return false;
     }
 
