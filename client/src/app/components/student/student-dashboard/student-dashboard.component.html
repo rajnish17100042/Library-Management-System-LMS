@@ -5,20 +5,23 @@
         <div class="main_content">
             <div class="header">
                 Welcome <strong>{{studentData.name}} </strong> !! Have a nice day.
-                <button class="btn btn-dark btn-sm" (click)="logout()">Logout</button>
-                <button class="btn btn-dark btn-sm">
-                    <a [routerLink]="['/student/display-books']"><i class="fas  fa-book"> Show Books</i>
-                    </a>
-                </button>
-                <button class="btn btn-dark btn-sm">
-                    <a [routerLink]="['/update-password/' + studentData.email +'/student']"><i class="fas  fa-key">
-                            Update
-                            Password</i>
-                    </a>
-                </button>
-                <button class="btn btn-dark btn-sm">
-                    <a routerLink="/upload-image"><i class="fas fa-image"> Upload Image</i></a>
-                </button>
+                <div style="float:right">
+                    <button class="btn btn-dark btn-sm" (click)="logout()"><i
+                            class="fas fa-sign-out-alt">Logout</i></button>
+                    <button class="btn btn-dark btn-sm">
+                        <a [routerLink]="['/student/display-books']"><i class="fas  fa-book"> Show Books</i>
+                        </a>
+                    </button>
+                    <button class="btn btn-dark btn-sm">
+                        <a [routerLink]="['/update-password/' + studentData.email +'/student']"><i class="fas  fa-key">
+                                Update
+                                Password</i>
+                        </a>
+                    </button>
+                    <button class="btn btn-dark btn-sm">
+                        <a routerLink="/upload-image"><i class="fas fa-image"> Upload Image</i></a>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
