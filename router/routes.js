@@ -756,9 +756,10 @@ router.post("/returnBook", authenticate, async (req, res) => {
     }
     //  in issuebook collection make is_return to true
     const is_updated_book = await IssueBook.updateOne(
-      { book_id, issue_book: email },
+      { book_id, issue_by: email },
       { $set: { is_return: true } }
     );
+    console.log(is_updated_book);
     if (!is_updated_book) {
       return res.json({
         success: false,
