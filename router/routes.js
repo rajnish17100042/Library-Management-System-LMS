@@ -573,7 +573,9 @@ router.post("/issueBook", authenticate, async (req, res) => {
       },
       { fine: 1, _id: 0 }
     );
-    if (previousfine.fine) {
+    console.log(previousfine);
+
+    if (previousfine && previousfine.fine) {
       return res.json({
         sucess: false,
         message: "You are having fine for this book",
