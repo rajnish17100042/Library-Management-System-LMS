@@ -756,23 +756,24 @@ router.post("/returnBook", authenticate, async (req, res) => {
     if (!book_id || !email || !issue_date || !return_date || !fine) {
       return res.json({ success: false, message: "Insufficient Data" });
     }
-    // //  in issuebook collection make is_return to true
-    // const is_updated_book = await IssueBook.updateOne(
-    //   { book_id, issue_by: email },
-    //   { $set: { is_return: true } }
-    // );
-    // console.log(is_updated_book);
-    // if (!is_updated_book.modifiedCount) {
-    //   return res.json({
-    //     success: false,
-    //     message: "Issue Book Not Updated",
-    //   });
-    // }
+    //  in issuebook collection make is_return to true
+    const is_updated_book = await IssueBook.updateOne(
+      { book_id, issue_by: email },
+      { $set: { is_return: true } }
+    );
+    console.log(is_updated_book);
+    if (!is_updated_book.modifiedCount) {
+      return res.json({
+        success: false,
+        message: "Issue Book Not Updated",
+      });
+    }
     //update fine in fine collection
     const is_updated_fine = await Registration.updateOne(
       { email },
       { $inc: { fine } }
     );
+    console.log(is_updated_fine);
     if (!is_updated_fine) {
       return res.json({
         success: false,
@@ -788,6 +789,7 @@ router.post("/returnBook", authenticate, async (req, res) => {
       { book_id },
       { $inc: { available_copies: 1 } }
     );
+    console.log(update_available_copies);
     // save the fine history in the finehistory collection
     const current_date = new Date().toLocaleDateString();
     const fine_data = {
@@ -800,7 +802,7 @@ router.post("/returnBook", authenticate, async (req, res) => {
     };
     const finehistory = new FineHistory(fine_data);
     const is_saved = await finehistory.save();
-
+    console.log(is_saved);
     return res.json({ success: true, message: "Book Returned Successfully" });
   } catch (err) {
     console.log(err);
