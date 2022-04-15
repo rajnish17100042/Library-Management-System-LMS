@@ -1065,6 +1065,25 @@ router.post("/payFine", authenticate, async (req, res) => {
   }
 });
 
+//fine histroy
+router.get("/getFineHistory", authenticate, async (req, res) => {
+  if (req.role !== "student") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  try {
+    const finehistory = await FineHistory.find({
+      issue_by: req.user.email,
+    });
+    return res.json({ success: true, finehistory });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
+});
+
 //get transaction details of an user
 router.get("/getTransactions", authenticate, async (req, res) => {
   if (req.role !== "student") {

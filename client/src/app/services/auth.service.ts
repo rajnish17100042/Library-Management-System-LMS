@@ -212,6 +212,14 @@ export class AuthService {
     return this.http.get<any>('/getFineDetails/'+email,{headers:headers,})
    }
 
+    //get fine details to display on librarian dashboard during fine payment 
+   getFineHistory(){
+    let headers=new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    headers.append( "credentials", "include");
+    return this.http.get<any>('/getFineHistory',{headers:headers,})
+   }
+
     //pay fine  
    payFine(data){
     let headers=new HttpHeaders();

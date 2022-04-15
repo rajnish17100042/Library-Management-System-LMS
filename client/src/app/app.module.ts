@@ -28,6 +28,7 @@ import { UpdateBookComponent } from './components/librarian/update-book/update-b
 import { ReturnBookComponent } from './components/librarian/return-book/return-book.component';
 import { PayFineComponent } from './components/librarian/pay-fine/pay-fine.component';
 import { ViewTransactionsComponent } from './components/student/view-transactions/view-transactions.component';
+import { FineHistoryComponent } from './components/student/fine-history/fine-history.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ViewTransactionsComponent } from './components/student/view-transaction
     ReturnBookComponent,
     PayFineComponent,
     ViewTransactionsComponent,
+    FineHistoryComponent,
    
   ],
   imports: [

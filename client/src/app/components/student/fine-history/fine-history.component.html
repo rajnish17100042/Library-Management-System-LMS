@@ -1,0 +1,35 @@
+<div *ngIf="finehistory.length">
+
+    <div class="main_content">
+        <!-- displaying transaction for fine payment  -->
+        <div class="header">
+            <h1>Fine History</h1>
+        </div>
+
+        <div class="info">
+            <table id="customers">
+                <tr>
+                    <th>Book Id</th>
+                    <th>Issue Date</th>
+                    <th>Returning Date</th>
+                    <th>Returned Date</th>
+                    <th>Fine</th>
+
+
+                </tr>
+
+                <tr *ngFor="let fineDetail of finehistory">
+                    <td>{{fineDetail.book_id}}</td>
+                    <td>{{fineDetail.issue_date}}</td>
+                    <td>{{fineDetail.actual_return_date}}</td>
+                    <td>{{fineDetail.user_return_date}}</td>
+                    <td class="text-danger">Rs {{transaction.amount}} </td>
+
+
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</div>
