@@ -13,11 +13,15 @@
             <label for="book_fine"><i class="fas fa-rupee-sign"></i><strong>Paying For</strong></label>
             <select [(ngModel)]="book_id" name="book_id" required>
                 <option value="" disabled selected>Select BOOK</option>
-                <option *ngFor="let finedetail of finehistory" value={{finedetail.book_id}}>Book
-                    id:{{finedetail.book_id}},
+                <option *ngFor="let finedetail of finehistory" value={{finedetail.fine}}>Book id:{{finedetail.book_id}},
                     Fine: <strong class="text-danger">Rs:{{finedetail.fine}}</strong></option>
 
             </select>
+
+            <label for="amount"><i class="fas fa-rupee-sign"></i><strong>Amount </strong></label>
+
+            <input type="number" [(ngModel)]="fineAmount" name="fineAmount" placeholder="Enter Amount to be paid"
+                required />
 
             <label for="purpose"><strong>Purpose</strong></label>
             <input type="textarea" [(ngModel)]="finePurpose" name="finePurpose" placeholder="Enter Purpose For the fine"
