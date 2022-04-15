@@ -21,7 +21,7 @@ const calculate_fine = (return_date) => {
   if (late > 0) {
     console.log("number of late days : ", late);
     console.log("fine for this book is : $ ", late * 10);
-    fine = (late + 1) * 10;
+    fine = late * 10;
   }
 
   return fine;
