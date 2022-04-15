@@ -757,17 +757,17 @@ router.post("/returnBook", authenticate, async (req, res) => {
       return res.json({ success: false, message: "Insufficient Data" });
     }
     //  in issuebook collection make is_return to true
-    // const is_updated_book = await IssueBook.updateOne(
-    //   { book_id, issue_by: email },
-    //   { $set: { is_return: true } }
-    // );
-    // console.log(is_updated_book);
-    // if (!is_updated_book.modifiedCount) {
-    //   return res.json({
-    //     success: false,
-    //     message: "Issue Book Not Updated",
-    //   });
-    // }
+    const is_updated_book = await IssueBook.updateOne(
+      { book_id, issue_by: email },
+      { $set: { is_return: 1 } }
+    );
+    console.log(is_updated_book);
+    if (!is_updated_book.modifiedCount) {
+      return res.json({
+        success: false,
+        message: "Issue Book Not Updated",
+      });
+    }
     //update fine in fine collection
     const is_updated_fine = await Registration.updateOne(
       { email },
