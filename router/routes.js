@@ -28,6 +28,7 @@ const authenticate = require("../middleware/authentication");
 const password_generator = require("../password_generator/password_generator");
 const passwordMailer = require("../mailer/password_mailer.js");
 const calculate_fine = require("../fine/single_book_fine.js");
+const res = require("express/lib/response");
 
 // const authenticate = require("../middleware/authentication");
 
@@ -663,8 +664,22 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
       );
     }
 
+    const fineHistory = await FineHistory.find(
+      { issue_by: user },
+      { fine: 1, _id: 0 }
+    );
+    console.log(fineHistory);
+    //calculate total fine of an user
+    let totalfine = 0;
+    for (let i = 0; i < fineHistory.length; i++) {
+      totalfine += fineHistory[i].fine;
+    }
+    for (let i = 0; i < combined_book_data.length; i++) {
+      totalfine += combined_book_data[i].fine;
+    }
+
     console.log(combined_book_data);
-    return res.json({ success: true, books: combined_book_data });
+    return res.json({ success: true, books: combined_book_data, totalfine });
   } catch (err) {
     // throw err
     return res.json({
@@ -1135,6 +1150,15 @@ router.get("/getTransactions", authenticate, async (req, res) => {
 //   res.json({ late });
 // });
 
+//test route
+router.get("/test", async (req, res) => {
+  const fineHistory = await FineHistory.find(
+    { issue_by: "rajnishk@spanidea.com" },
+    { fine: 1, _id: 0 }
+  );
+  console.log(fineHistory);
+  res.json({ fineHistory });
+});
 //route for Logout
 router.get("/logout", authenticate, (req, res) => {
   // console.log("reaching to logout route");

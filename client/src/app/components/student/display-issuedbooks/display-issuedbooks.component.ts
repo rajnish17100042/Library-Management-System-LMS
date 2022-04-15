@@ -10,6 +10,7 @@ import {FlashMessagesService} from 'flash-messages-angular';
 })
 export class DisplayIssuedbooksComponent implements OnInit {
   issuedBooks=[];
+  totalfine:Number;
   constructor(
     private validateService:ValidateService,
     private flashMessage:FlashMessagesService,
@@ -21,6 +22,7 @@ export class DisplayIssuedbooksComponent implements OnInit {
     this.authService.getIssuedBooks().subscribe(data=>{
       if(data.success){
         this.issuedBooks=data.books;
+        this.totalfine=data.totalfine;
       }else{
         this.flashMessage.show(data.message,{cssClass:'alert-danger',timeout:3000});
          this.router.navigate(['/login']);

@@ -1,9 +1,9 @@
-<div *ngIf="issuedBooks.length">
+<div *ngIf="issuedBooks.length && totalfine">
 
     <div class="main_content">
         <!-- displaying issued book data  -->
         <div class="header">
-            <h1>Books Issued</h1>
+            <h1>Books Issued <strong>[Total Fine: Rs: {{totalfine}}]</strong></h1>
         </div>
 
         <div class="info">
