@@ -14,6 +14,8 @@ export class PayFineComponent implements OnInit {
   finePurpose:String;
   is_render:boolean = false;
   email:String;
+  book_id:String;
+  finehistory=[];
   constructor(
     private validateService:ValidateService,
     private flashMessage:FlashMessagesService,
@@ -24,6 +26,7 @@ export class PayFineComponent implements OnInit {
 
   ngOnInit(){
     this.email = this.route.snapshot.params['email'];
+
      this.authService.getFineDetails(this.email).subscribe(
       data => {
        if(data.success){
@@ -35,6 +38,22 @@ export class PayFineComponent implements OnInit {
        }
        else{
             this.flashMessage.show("Something went wrong",{cssClass:'alert-danger',timeout:3000});
+             this.is_render=false;
+            this.router.navigate(['/login']);
+       }
+      }
+      
+    );
+    this.authService.getFinehistory(this.email).subscribe(
+      data => {
+       if(data.success){
+          this.finehistory=data.finehistory;
+          this.is_render=true;
+         
+       }
+       else{
+            this.flashMessage.show("Something went wrong",{cssClass:'alert-danger',timeout:3000});
+             this.is_render=false;
             this.router.navigate(['/login']);
        }
       }
@@ -45,6 +64,7 @@ export class PayFineComponent implements OnInit {
   payFine(){
     const data={
       email:this.email,
+      book_id:this.book_id,
       amount:this.fineAmount,
       purpose:this.finePurpose,
     }

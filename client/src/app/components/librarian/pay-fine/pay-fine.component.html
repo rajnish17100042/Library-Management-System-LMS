@@ -9,10 +9,14 @@
             <label for="email"><i class="fa fa-envelope"></i> <strong>User Id</strong></label>
             <input type="email" [(ngModel)]="fineData.email" [disabled]="true" name="fineData.email"
                 placeholder="Enter Your Email" required />
-            <label for="amount"><i class="fa fa-cost"></i><strong>Amount </strong></label>
 
-            <input type="number" [(ngModel)]="fineAmount" name="fineAmount" placeholder="Enter Amount to be paid"
-                required />
+            <label for="book_fine"><i class="fas fa-rupee-sign"></i><strong>Paying For</strong></label>
+            <select [(ngModel)]="book_id" name="book_id" required>
+                <option value="" disabled selected>Select BOOK</option>
+                <option *ngFor="let finedetail of finehistory" value="fine.book_id">Book id:{{finedetail.book_id}},
+                    Fine: <strong class="text-danger">Rs:{{finedetail.fine}}</strong></option>
+
+            </select>
 
             <label for="purpose"><strong>Purpose</strong></label>
             <input type="textarea" [(ngModel)]="finePurpose" name="finePurpose" placeholder="Enter Purpose For the fine"

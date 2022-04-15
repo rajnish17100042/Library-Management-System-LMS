@@ -1115,6 +1115,26 @@ router.get("/getFineHistory", authenticate, async (req, res) => {
   }
 });
 
+//fine history using email as a parameter
+//fine histroy
+router.get("/getFineHistory/:email", authenticate, async (req, res) => {
+  if (req.role !== "librarian") {
+    return res.json({ success: false, message: "Not Have Proper Access" });
+  }
+  try {
+    const { email } = req.params;
+    const finehistory = await FineHistory.find({
+      issue_by: email,
+    });
+    return res.json({ success: true, finehistory });
+  } catch (err) {
+    console.log(err);
+    return res.json({
+      success: false,
+      message: "Something went Wrong,Please Try Again",
+    });
+  }
+});
 //get transaction details of an user
 router.get("/getTransactions", authenticate, async (req, res) => {
   if (req.role !== "student") {
