@@ -1071,7 +1071,7 @@ router.post("/payFine", authenticate, async (req, res) => {
 
     //update finehistory collection
     const finehistoryupdated = await FineHistory.updateOne(
-      { issue_by: email },
+      { issue_by: email, book_id },
       { $inc: { fine: -amount } }
     );
 
