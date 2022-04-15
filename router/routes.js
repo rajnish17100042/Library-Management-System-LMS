@@ -565,7 +565,21 @@ router.post("/issueBook", authenticate, async (req, res) => {
     return_date,
   };
   try {
-    //  first check if the book is already issued by the user
+    //check if user is having previous fine on the cuurent book
+    const previousfine = await FineHistory.findOne(
+      {
+        issue_by: req.user.email,
+        book_id,
+      },
+      { fine: 1, _id: 0 }
+    );
+    if (previousfine.fine) {
+      return res.json({
+        sucess: false,
+        message: "You are having fine for this book",
+      });
+    }
+    //  check if the book is already issued by the user
 
     const is_issued = await IssueBook.findOne({
       book_id,
