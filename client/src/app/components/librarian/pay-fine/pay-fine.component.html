@@ -13,7 +13,8 @@
             <label for="book_fine"><i class="fas fa-rupee-sign"></i><strong>Paying For</strong></label>
             <select [(ngModel)]="book_id" name="book_id" required>
                 <option value="" disabled selected>Select BOOK</option>
-                <option *ngFor="let finedetail of finehistory" value="fine.book_id">Book id:{{finedetail.book_id}},
+                <option *ngFor="let finedetail of finehistory" value={{finedetail.book_id}}>Book
+                    id:{{finedetail.book_id}},
                     Fine: <strong class="text-danger">Rs:{{finedetail.fine}}</strong></option>
 
             </select>
