@@ -1049,7 +1049,7 @@ router.post("/payFine", authenticate, async (req, res) => {
 
   try {
     const { email, book_id, amount, purpose } = req.body;
-    console.log(email, book_id, purpose);
+    console.log(email, book_id, amount, purpose);
     if (!email || !amount || !purpose) {
       return res.json({
         success: false,
