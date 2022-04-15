@@ -17,6 +17,7 @@ const Registration = require("../model/registrationSchema");
 const BookDetail = require("../model/bookDetailsSchema");
 const IssueBook = require("../model/issueBookSchema");
 const FineTransaction = require("../model/fineTransactionSchema");
+const FineHistory = require("../model/fineHistory");
 
 const {
   validateInput,
@@ -421,6 +422,7 @@ router.post("/addBook", authenticate, async (req, res) => {
       console.log(req.body);
       const bookDetail = new BookDetail(req.body);
       const is_saved = await bookDetail.save();
+
       console.log(is_saved);
       if (!is_saved) {
         return res.json({
@@ -748,10 +750,10 @@ router.post("/returnBook", authenticate, async (req, res) => {
   if (req.role !== "librarian") {
     return res.json({ success: false, message: "Not Have Proper Access" });
   }
-  const { book_id, email, fine } = req.body;
+  const { book_id, email, issue_date, return_date, fine } = req.body;
 
   try {
-    if (!book_id || !email || !fine) {
+    if (!book_id || !email || !issue_date || !return_date || !fine) {
       return res.json({ success: false, message: "Insufficient Data" });
     }
     //  in issuebook collection make is_return to true
@@ -760,7 +762,7 @@ router.post("/returnBook", authenticate, async (req, res) => {
       { $set: { is_return: true } }
     );
     console.log(is_updated_book);
-    if (!is_updated_book) {
+    if (!is_updated_book.modifiedCount) {
       return res.json({
         success: false,
         message: "Something went Wrong,Please Try Again",
@@ -786,6 +788,19 @@ router.post("/returnBook", authenticate, async (req, res) => {
       { book_id },
       { $inc: { available_copies: 1 } }
     );
+    // save the fine history in the finehistory collection
+    const current_date = new Date().toLocaleDateString();
+    const fine_data = {
+      issue_by: email,
+      book_id,
+      issue_date,
+      actual_return_date: return_date,
+      user_return_date: current_date,
+      fine,
+    };
+    const finehistory = new FineHistory(fine_data);
+    const is_saved = await finehistory.save();
+
     return res.json({ success: true, message: "Book Returned Successfully" });
   } catch (err) {
     console.log(err);
