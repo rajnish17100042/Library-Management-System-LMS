@@ -1134,6 +1134,7 @@ router.get("/getFineHistory/:email", authenticate, async (req, res) => {
     const { email } = req.params;
     const finehistory = await FineHistory.find({
       issue_by: email,
+      fine: { $gt: 0 },
     });
     return res.json({ success: true, finehistory });
   } catch (err) {
