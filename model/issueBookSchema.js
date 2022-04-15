@@ -29,7 +29,7 @@ const issueBookSchema = new mongoose.Schema({
   },
 
   is_return: {
-    type: Boolean,
+    type: Number,
     required: true,
     default: 0,
   },

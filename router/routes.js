@@ -569,7 +569,7 @@ router.post("/issueBook", authenticate, async (req, res) => {
     const is_issued = await IssueBook.findOne({
       book_id,
       issue_by: issueData.issue_by,
-      is_return: false,
+      is_return: 0,
     });
     console.log(is_issued);
     if (is_issued) {
@@ -619,7 +619,7 @@ router.get("/getIssuedBooks", authenticate, async (req, res) => {
     // get all the books issued by the user from issuebooks mongodb collection
     const issuedBooks = await IssueBook.find({
       issue_by: user,
-      is_return: false,
+      is_return: 0,
     });
     console.log(issuedBooks);
     //now get all the book ids
@@ -689,7 +689,7 @@ router.get("/listIssuedBooks/:book_id", authenticate, async (req, res) => {
   //now  get the list of all users who have issued the book having book_id as the req.params
 
   try {
-    const issuedBooks = await IssueBook.find({ book_id, is_return: false });
+    const issuedBooks = await IssueBook.find({ book_id, is_return: 0 });
     console.log(issuedBooks);
     if (!issuedBooks) {
       return res.json({
@@ -723,7 +723,7 @@ router.get("/getIssuedBook/:book_id/:email", authenticate, async (req, res) => {
     const issuedBook = await IssueBook.findOne({
       book_id,
       issue_by: email,
-      is_return: false,
+      is_return: 0,
     });
     if (!issuedBook) {
       return res.json({ success: false, message: "Book details not found" });
@@ -758,11 +758,11 @@ router.post("/returnBook", authenticate, async (req, res) => {
     }
     //  in issuebook collection make is_return to true
     const is_updated_book = await IssueBook.updateOne(
-      { book_id, issue_by: email },
-      { $set: { is_return: true } }
+      { book_id: book_id, issue_by: email },
+      { $set: { is_return: 1 } }
     );
     console.log(is_updated_book);
-    if (!is_updated_book) {
+    if (!is_updated_book.modifiedCount) {
       return res.json({
         success: false,
         message: "Issue Book Not Updated",
@@ -774,7 +774,7 @@ router.post("/returnBook", authenticate, async (req, res) => {
       { $inc: { fine } }
     );
     console.log(is_updated_fine);
-    if (!is_updated_fine) {
+    if (!is_updated_fine.modifiedCount) {
       return res.json({
         success: false,
         message: "fine not updated",
