@@ -765,7 +765,7 @@ router.post("/returnBook", authenticate, async (req, res) => {
     if (!is_updated_book.modifiedCount) {
       return res.json({
         success: false,
-        message: "Something went Wrong,Please Try Again",
+        message: "Issue Book Not Updated",
       });
     }
     //update fine in fine collection
@@ -776,7 +776,7 @@ router.post("/returnBook", authenticate, async (req, res) => {
     if (!is_updated_fine) {
       return res.json({
         success: false,
-        message: "Something went Wrong,Please Try Again",
+        message: "fine not updated",
       });
     }
 
